@@ -1,5 +1,5 @@
 # Introduction 
-As a learning excercise, implement a simple, browser-based calculator with a web api backend. 
+As a learning exercise, implement a simple, browser-based calculator with a web API backend. 
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
