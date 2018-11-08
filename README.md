@@ -52,7 +52,7 @@ Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), 
 * Not surprisingly, use Azure DevOps Pipelines for CI/CD support.
   * For starters, keep it simple: automatically build and deploy to a Azure Web App when the repo's master branch is changed.
   * Later on, explore other options such as:
-    * Dockerizing the application and deploying the container to (say) a AKS cluster (which _really_ checks the technology overkill box).
+    * Dockerizing the application and deploying the container to (say) an AKS cluster, which certainly checks the technology overkill box!
     * Deploying initially to a "UAT" environment and then later on deploying to "PROD" when a manual approval step is performed.
     * Blue-Green deployments using Azure Traffic Manager.
 
