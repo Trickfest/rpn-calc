@@ -25,6 +25,13 @@ Besides exploring Azure DevOps, also use this project to learn something new.
 For example, take the opportunity to explre a new web framework or TDD tool.
 It's OK if the technology selection doesn't make total sense or is overkill for the task at hand.
 
+### Flexible development environment
+
+Again, mostly for the fun of it, the project should be as flexible as possible with reqards to development environment.
+For example, Vim and the command line running on Ubuntu should be a supported developer setup.
+On the opposite end of the spectrum, a full-blow IDE such as Visual Studio on Windows
+should be an option as well.
+
 ## Getting Started
 
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
