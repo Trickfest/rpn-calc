@@ -2,7 +2,7 @@
 
 ## Introduction
 
-As a learning exercise, implement a Reverse Polish Notation (RPN) calculator using test-driven
+Implement a Reverse Polish Notation (RPN) calculator using test-driven
 development (TDD) and set up a Azure DevOps CI/CD pipeline that deploys to Azure.
 
 ## General Application Requirements
@@ -27,9 +27,10 @@ It's OK if the technology selection doesn't make total sense or is overkill for 
 
 ### Cross platform for both development and deployment
 
-Again, mostly for the fun of it, the project should be as flexible as possible with reqards to development and deployment environments.
+Again, mostly for the fun of it, the project should be as flexible as possible
+with reqards to development and deployment environments.
 For example, Vim and the command line running on Ubuntu should be a supported developer setup.
-On the opposite end of the spectrum, a full-blow IDE such as Visual Studio on Windows
+On the opposite end of the spectrum, using a full-blow IDE such as Visual Studio on Windows
 should be an option as well.
 
 Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), etc.
