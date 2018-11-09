@@ -8,7 +8,7 @@ namespace rpn_calc_test
         [Fact]
         public void AlwaysSucceeds()
         {
-            Assert.True(false);
+            Assert.True(true);
         }
     }
 }
