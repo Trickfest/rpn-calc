@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Display } from './Display';
 
 export class Calculator extends Component {
   displayName = Calculator.name
@@ -11,6 +12,7 @@ export class Calculator extends Component {
     return (
       <div>
         <h1>Calculator</h1>
+        <Display/>
       </div>
     );
   }
