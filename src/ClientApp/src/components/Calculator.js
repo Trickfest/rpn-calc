@@ -14,7 +14,7 @@ export class Calculator extends Component {
 
     render() {
         return (
-            <div class="calculator">
+            <div class="calculator container">
                 <Display />
                 <KeyBoard />
             </div>

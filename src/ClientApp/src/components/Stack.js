@@ -9,7 +9,7 @@ export class Stack extends Component {
 
   render() {
     return (
-      <div class="stack">
+      <div class="stack row">
         <p>Stack</p>
       </div>
     );
