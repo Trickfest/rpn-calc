@@ -68,6 +68,8 @@ In terms of React components, create the following tree of components:
   * Keyboard
     * Collection of buttons  (as implementation progresses, may futher refine this into either rows and/or types of buttons)
 
+To keep things manageable, stick with one CSS file for the entire calculator (instead of one per component).
+
 ## Getting Started
 
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:

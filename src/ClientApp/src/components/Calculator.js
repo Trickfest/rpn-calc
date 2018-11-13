@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import './CalculatorStyles.css';
 import { Display } from './Display';
 import { KeyBoard } from './KeyBoard';
 
@@ -11,7 +14,7 @@ export class Calculator extends Component {
 
     render() {
         return (
-            <div>
+            <div class="calculator">
                 <h1>Calculator</h1>
                 <Display />
                 <KeyBoard />
