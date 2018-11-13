@@ -1,4 +1,22 @@
 .calculator {
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top: 10em;
+    margin-left: 10em;
+    border: solid;
+    width: 20em;
+}
+
+.stack {
+    border-bottom: solid;
+    text-align: right;
+    height: 10em;
+}
+
+.inputline {
+    border-bottom: solid;
+    height: 2em;
+    text-align: right;
+}
+
+.keyboard {
+    background-color: lightblue
 }

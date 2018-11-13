@@ -9,8 +9,8 @@ export class InputLine extends Component {
 
   render() {
     return (
-      <div>
-        <h3>InputLine</h3>
+      <div class="inputline">
+        InputLine
       </div>
     );
   }

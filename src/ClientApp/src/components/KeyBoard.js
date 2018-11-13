@@ -9,8 +9,8 @@ export class KeyBoard extends Component {
 
   render() {
     return (
-      <div>
-        <h3>KeyBoard</h3>
+      <div class="keyboard">
+        <p>KeyBoard</p>
       </div>
     );
   }

@@ -9,8 +9,8 @@ export class Stack extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Stack</h3>
+      <div class="stack">
+        <p>Stack</p>
       </div>
     );
   }

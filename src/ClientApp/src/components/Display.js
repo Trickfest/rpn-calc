@@ -12,7 +12,6 @@ export class Display extends Component {
     render() {
         return (
             <div>
-                <h2>Display</h2>
                 <Stack />
                 <InputLine />
             </div>
