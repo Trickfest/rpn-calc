@@ -57,6 +57,17 @@ Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), 
     * Deploying initially to a "UAT" environment and then later on deploying to "PROD" when a manual approval step is performed.
     * Blue-Green deployments using Azure Traffic Manager.
 
+## Calculator Component Layout
+
+In terms of React components, create the following tree of components:
+
+* Calculator - the top-level component
+  * Display
+    * Stack
+    * Input Line
+  * Keyboard
+    * Collection of buttons  (as implementation progresses, may futher refine this into either rows and/or types of buttons)
+
 ## Getting Started
 
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
