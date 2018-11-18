@@ -42,7 +42,7 @@ export class KeyBoard extends Component {
           <div class="col-xs-3 button">.</div>
           <div class="col-xs-3 button">0</div>         
           <div class="col-xs-3 button">+-</div>
-          <div class="col-xs-3 button">ENTER</div>
+          <div class="col-xs-3 button">ENT</div>
         </div>
       </div>
     );

@@ -20,4 +20,6 @@
     border-style: solid;
     border-width: thin;
     text-align: center;
+    font-weight: bold;
+    background-color: aqua;
 }
