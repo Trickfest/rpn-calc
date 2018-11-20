@@ -5,7 +5,7 @@ import { Counter } from './Counter';
 
 describe("Counter Suite", function () {
 
-  it("Click Test", function () {
+  it("simulates clicking the button three times and verifies the state", function () {
     configure({ adapter: new Adapter() })
 
     var wrapper = shallow(<Counter />);
