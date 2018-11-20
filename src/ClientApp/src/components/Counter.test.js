@@ -12,6 +12,8 @@ describe("Counter Suite", function () {
 
     const theButton = wrapper.find('button');
 
+    expect(wrapper.state().currentCount).toBe(0);
+
     theButton.simulate('click');
     expect(wrapper.state().currentCount).toBe(1);
 
