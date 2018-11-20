@@ -24,4 +24,21 @@ describe("Counter Suite", function () {
     expect(wrapper.state().currentCount).toBe(3);
   });
 
+  it('should call the increment counter function directly and verify the state', () => {
+    const wrapper = shallow(<Counter />);
+
+    const instance = wrapper.instance();
+
+    expect(wrapper.state().currentCount).toBe(0);
+    
+    instance.incrementCounter();
+    expect(wrapper.state().currentCount).toBe(1);
+    
+    instance.incrementCounter();
+    expect(wrapper.state().currentCount).toBe(2);
+
+    instance.incrementCounter();
+    expect(wrapper.state().currentCount).toBe(3);
+  });
+
 });
