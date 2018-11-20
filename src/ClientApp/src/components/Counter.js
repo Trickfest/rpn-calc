@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Counter extends Component {
+export class Counter extends Component {
   displayName = Counter.name
 
   constructor(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow } from 'enzyme';
-import Counter from './Counter';
+import { Counter } from './Counter';
 
 describe("Counter Suite", function () {
 
