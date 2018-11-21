@@ -8,9 +8,16 @@ export class Stack extends Component {
   constructor(props) {
     super(props);
 
-    var stackelement = { text: "123" };
-    var blankstackelement = { text: " " };
-    this.state = { stack: [blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, stackelement, stackelement, stackelement] };
+    var fillerstackelement = { text: " " };
+
+    var stack = [];
+    for (var i = 0; i < 10; i++) {
+      stack.push(fillerstackelement);
+    }
+
+    this.stackCount = 0;
+
+    this.state = { stack: stack };
 
     this.push = this.push.bind(this);
     this.pop = this.pop.bind(this);
@@ -18,14 +25,23 @@ export class Stack extends Component {
   }
 
   push(x) {
-    this.state.stack.push(x);
+    var stackelement = { text: x };
+    this.state.stack.push(stackelement);
+    this.stackCount++;
   }
 
   pop() {
-    return this.state.stack.pop();
+    if (this.stackCount < 1)
+      return null;
+
+    this.stackCount--;
+    return this.state.stack.pop().text;
   }
 
   swap(x) {
+    if (this.stackCount < 1)
+      return null;
+
     var t = this.pop();
     this.push(x);
     return t;

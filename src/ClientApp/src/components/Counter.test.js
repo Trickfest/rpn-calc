@@ -25,6 +25,8 @@ describe("Counter Suite", function () {
   });
 
   it('calls the increment counter function directly three times and verifies the state', () => {
+    configure({ adapter: new Adapter() })
+    
     const wrapper = shallow(<Counter />);
 
     const instance = wrapper.instance();
