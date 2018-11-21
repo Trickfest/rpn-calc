@@ -3,17 +3,13 @@
     width: 20em;
 }
 
-.stack {
-    border-bottom-style: solid;
-    text-align: right;
-    height: 10em;
-}
-
 .inputline {
+    border-top-style: none;
     border-bottom-style: solid;
     border-bottom-width: thin;
-    height: 2em;
+    height: 1.75em;
     text-align: right;
+    padding-right: .5em;
 }
 
 .button {
@@ -22,4 +18,19 @@
     text-align: center;
     font-weight: bold;
     background-color: aqua;
+}
+
+.stack {
+    width: 19.55em;
+    height: 13em;  
+    display: inline-block;
+    overflow-y: scroll;
+    border-bottom-style: solid;
+    text-align: right;
+    padding-right: .5em;
+}
+
+.stackelement {
+    min-height: 1em;
+    color: red;
 }
