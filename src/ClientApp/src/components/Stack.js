@@ -11,6 +11,22 @@ export class Stack extends Component {
     var stackelement = { text: "123" };
     var blankstackelement = { text: " " };
     this.state = { stack: [blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, blankstackelement, stackelement, stackelement, stackelement] };
+
+    this.push = this.push.bind(this);
+    this.pop = this.pop.bind(this);
+    this.swap = this.swap.bind(this);
+  }
+
+  push(x) {
+    throw "Not implemented";
+  }
+
+  pop() {
+    throw "Not implemented";
+  }
+
+  swap(x) {
+    throw "Not implemented";
   }
 
   componentDidUpdate(prevProps) {
