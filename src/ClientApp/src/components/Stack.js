@@ -18,19 +18,21 @@ export class Stack extends Component {
   }
 
   push(x) {
-    throw "Not implemented";
+    this.state.stack.push(x);
   }
 
   pop() {
-    throw "Not implemented";
+    return this.state.stack.pop();
   }
 
   swap(x) {
-    throw "Not implemented";
+    var t = this.pop();
+    this.push(x);
+    return t;
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.stackelements.length < this.props.stackelements.length)
+    if (prevProps.stack.length < this.props.stack.length)
       this.stayScrolled(); // Or: this.scrollBottom
   }
 
@@ -44,7 +46,7 @@ export class Stack extends Component {
       <StayScrolled provideControllers={this.storeScrolledControllers} class="row stack">
         {
           this.state.stack.map(
-            (stackelement, i) => <StackElement text={stackelement.text} />
+            (stackelement, i) => <StackElement text={stackelement.text} key={i} />
           )
         }
       </StayScrolled>
