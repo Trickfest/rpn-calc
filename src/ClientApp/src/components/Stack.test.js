@@ -63,4 +63,16 @@ describe("Stack Suite", function () {
         expect(instance.pop()).toBe(200);
     });
 
+    
+    it('ensures that a reset of a non-empty stack results in an empty stack', () => {
+        const wrapper = shallow(<Stack />);
+
+        const instance = wrapper.instance();
+
+        instance.push(100);
+        instance.push(200);
+        instance.reset();
+        expect(instance.pop()).toBe(null);
+    });
+
 });

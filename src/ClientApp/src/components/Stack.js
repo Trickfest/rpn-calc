@@ -22,6 +22,7 @@ export class Stack extends Component {
     this.push = this.push.bind(this);
     this.pop = this.pop.bind(this);
     this.swap = this.swap.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   push(x) {
@@ -45,6 +46,10 @@ export class Stack extends Component {
     var t = this.pop();
     this.push(x);
     return t;
+  }
+
+  reset() {
+    
   }
 
   componentDidUpdate(prevProps) {
