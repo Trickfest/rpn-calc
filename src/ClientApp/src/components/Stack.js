@@ -49,7 +49,7 @@ export class Stack extends Component {
   }
 
   reset() {
-    
+    while(this.pop() != null);
   }
 
   componentDidUpdate(prevProps) {

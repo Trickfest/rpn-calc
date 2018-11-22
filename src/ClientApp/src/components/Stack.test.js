@@ -56,6 +56,8 @@ describe("Stack Suite", function () {
         instance.push(200);
         instance.push(300);
         expect(instance.pop()).toBe(300);
+        instance.push(400);
+        instance.push(500);
         instance.reset();
         expect(instance.pop()).toBe(null);
     });
