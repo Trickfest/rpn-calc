@@ -6,16 +6,21 @@ export class InputLine extends Component {
   constructor(props) {
     super(props);
 
+    var inputLineText = "0";
+
+    this.state = { inputLineText: inputLineText }
+
     this.get = this.get.bind(this);
-    this.get = this.get.bind(this);
+    this.set = this.set.bind(this);
   }
 
   set(s) {
-
+    this.state.inputLineText = s;
+    return s;
   }
 
   get(s) {
-    return "";
+    return this.state.inputLineText;
   }
 
   render() {
