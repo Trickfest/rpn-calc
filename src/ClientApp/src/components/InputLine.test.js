@@ -25,7 +25,6 @@ describe("InputLine Suite", function () {
         expect(instance.set(value)).toBe(value);
         expect(instance.get()).toBe(value);
     });
-
     
     it("ensures that multiple gets and sets work", function () {
         configure({ adapter: new Adapter() })
@@ -41,6 +40,5 @@ describe("InputLine Suite", function () {
         expect(instance.set(value)).toBe(value);
         expect(instance.get()).toBe(value);
     });
-
 
 });
