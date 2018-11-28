@@ -14,7 +14,6 @@ describe("InputLine Suite", function () {
         expect(instance.get()).toBe("0");
     });
 
-    
     it("ensures that getting a previously set value works", function () {
         configure({ adapter: new Adapter() })
 
