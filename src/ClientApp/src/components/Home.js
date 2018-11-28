@@ -7,7 +7,7 @@ export class Home extends Component {
     return (
       <div>
         <h1>RPN-CALC</h1>
-        <p>Packages Updated</p>
+        <p>11/28/18</p>
       </div>
     );
   }
