@@ -5,6 +5,17 @@ export class InputLine extends Component {
 
   constructor(props) {
     super(props);
+
+    this.get = this.get.bind(this);
+    this.get = this.get.bind(this);
+  }
+
+  set(s) {
+
+  }
+
+  get(s) {
+    return "";
   }
 
   render() {
