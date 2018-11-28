@@ -26,4 +26,21 @@ describe("InputLine Suite", function () {
         expect(instance.get()).toBe(value);
     });
 
+    
+    it("ensures that multiple gets and sets work", function () {
+        configure({ adapter: new Adapter() })
+
+        const wrapper = shallow(<InputLine />);
+        const instance = wrapper.instance();
+
+        var value = "1234.56";
+        expect(instance.set(value)).toBe(value);
+        expect(instance.get()).toBe(value);
+
+        value = "6543.21"
+        expect(instance.set(value)).toBe(value);
+        expect(instance.get()).toBe(value);
+    });
+
+
 });
