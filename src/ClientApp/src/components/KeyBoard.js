@@ -23,11 +23,14 @@ export class KeyBoard extends Component {
       case "7":
       case "8":
       case "9":
-        if (this.getInputLine.length >= 9)
+        if (this.strDigits() >= 9) // ignore input over a somewhat arbitrary length cap
           break;
 
         if (this.getInputLine() === "0") {
           this.setInputLine(event.target.id);
+        }
+        else if (this.getInputLine() === "-0") {
+          this.setInputLine("-" + event.target.id);
         }
         else {
           this.setInputLine(this.getInputLine() + event.target.id);
@@ -66,6 +69,14 @@ export class KeyBoard extends Component {
         break;
 
       case "POS-NEG":
+        var inputLine = this.getInputLine();
+        if (inputLine.charAt(0) === '-') {
+          inputLine = inputLine.substr(1);
+        }
+        else {
+          inputLine = "-" + inputLine;
+        }
+        this.setInputLine(inputLine);
         break;
 
       case "ENT":
@@ -97,6 +108,18 @@ export class KeyBoard extends Component {
 
   stackReset() {
     Stack._instance.reset();
+  }
+
+  // return number of digits in string
+  strDigits() {
+    var result = this.getInputLine().length;
+    if (this.getInputLine().includes(".")) {
+      result--;
+    }
+    if (this.getInputLine().includes("-")) {
+      result--;
+    }
+    return result;
   }
 
   render() {
