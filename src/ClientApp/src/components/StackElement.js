@@ -24,7 +24,7 @@ export class StackElement extends Component {
     }
 
     render() {
-        return (<div class="stackelement">{this.props.text}</div>);
+        return (<div className="stackelement">{this.props.text}</div>);
     }
 }
 

@@ -71,7 +71,7 @@ export class Stack extends Component {
 
   render() {
     return (
-      <StayScrolled provideControllers={this.storeScrolledControllers} class="row stack">
+      <StayScrolled provideControllers={this.storeScrolledControllers} className="row stack">
         {
           this.state.stack.map(
             (stackelement, i) => <StackElement text={stackelement.text} key={i} />

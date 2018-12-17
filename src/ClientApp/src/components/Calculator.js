@@ -10,7 +10,7 @@ export class Calculator extends Component {
 
     render() {
         return (
-            <div class="calculator container">
+            <div className="calculator container">
                 <Display />
                 <KeyBoard />
             </div>

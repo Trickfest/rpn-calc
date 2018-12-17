@@ -27,7 +27,7 @@ export class InputLine extends Component {
 
   render() {
     return (
-      <div class="inputline row">
+      <div className="inputline row">
         {this.state.inputLineText}
       </div>
     );

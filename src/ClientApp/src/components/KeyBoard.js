@@ -102,39 +102,39 @@ export class KeyBoard extends Component {
   render() {
     return (
       <div>
-        <div class="row">
-          <div class="col-xs-3 button" onClick={this.handleClick} id="CE">CE</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="C">C</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="DEL">DEL</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="DIV">/</div>
+        <div className="row">
+          <div className="col-xs-3 button" onClick={this.handleClick} id="CE">CE</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="C">C</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="DEL">DEL</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="DIV">/</div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-3 button" onClick={this.handleClick} id="7">7</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="8">8</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="9">9</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="MULT">*</div>
+        <div className="row">
+          <div className="col-xs-3 button" onClick={this.handleClick} id="7">7</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="8">8</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="9">9</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="MULT">*</div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-3 button" onClick={this.handleClick} id="4">4</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="5">5</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="6">6</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="SUB">-</div>
+        <div className="row">
+          <div className="col-xs-3 button" onClick={this.handleClick} id="4">4</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="5">5</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="6">6</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="SUB">-</div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-3 button" onClick={this.handleClick} id="1">1</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="2">2</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="3">3</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="ADD">+</div>
+        <div className="row">
+          <div className="col-xs-3 button" onClick={this.handleClick} id="1">1</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="2">2</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="3">3</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="ADD">+</div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-3 button" onClick={this.handleClick} id="DECIMAL">.</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="0">0</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="POS-NEG">+-</div>
-          <div class="col-xs-3 button" onClick={this.handleClick} id="ENT">ENT</div>
+        <div className="row">
+          <div className="col-xs-3 button" onClick={this.handleClick} id="DECIMAL">.</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="0">0</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="POS-NEG">+-</div>
+          <div className="col-xs-3 button" onClick={this.handleClick} id="ENT">ENT</div>
         </div>
       </div>
     );
