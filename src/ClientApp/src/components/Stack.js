@@ -11,7 +11,7 @@ export class Stack extends Component {
     var fillerstackelement = { text: " " };
 
     var stack = [];
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 15; i++) {
       stack.push(fillerstackelement);
     }
 
@@ -23,12 +23,16 @@ export class Stack extends Component {
     this.pop = this.pop.bind(this);
     this.swap = this.swap.bind(this);
     this.reset = this.reset.bind(this);
+
+    Stack._instance = this;
   }
 
   push(x) {
     var stackelement = { text: x };
     this.state.stack.push(stackelement);
     this.stackCount++;
+
+    this.setState({ stack: this.state.stack });
   }
 
   pop() {
@@ -36,7 +40,9 @@ export class Stack extends Component {
       return null;
 
     this.stackCount--;
-    return this.state.stack.pop().text;
+    var result = this.state.stack.pop().text;
+    this.setState({ stack: this.state.stack });
+    return result;
   }
 
   swap(x) {
@@ -49,12 +55,13 @@ export class Stack extends Component {
   }
 
   reset() {
-    while(this.pop() != null);
+    while (this.pop() != null);
+    this.setState({ stack: this.state.stack });
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.stack.length < this.props.stack.length)
-      this.stayScrolled(); // Or: this.scrollBottom
+    //if (prevProps.stack.length < this.props.stack.length)
+    //  this.stayScrolled(); // Or: this.scrollBottom
   }
 
   storeScrolledControllers = ({ stayScrolled, scrollBottom }) => {

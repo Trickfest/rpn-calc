@@ -8,10 +8,6 @@ import { KeyBoard } from './KeyBoard';
 export class Calculator extends Component {
     displayName = Calculator.name
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div class="calculator container">

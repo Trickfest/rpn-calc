@@ -12,10 +12,12 @@ export class InputLine extends Component {
 
     this.get = this.get.bind(this);
     this.set = this.set.bind(this);
+
+    InputLine._instance = this;
   }
 
   set(s) {
-    this.state.inputLineText = s;
+    this.setState({ inputLineText: s});
     return s;
   }
 
@@ -26,7 +28,7 @@ export class InputLine extends Component {
   render() {
     return (
       <div class="inputline row">
-        InputLine
+        {this.state.inputLineText}
       </div>
     );
   }
