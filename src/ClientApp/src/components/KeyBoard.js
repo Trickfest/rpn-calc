@@ -23,7 +23,8 @@ export class KeyBoard extends Component {
       case "7":
       case "8":
       case "9":
-        if (this.strDigits() >= 9) // ignore input over a somewhat arbitrary length cap
+        // ignore input over a somewhat arbitrary length cap - similar to iPhone calculator
+        if (this.strDigits() >= 9)
           break;
 
         if (this.getInputLine() === "0") {
@@ -47,6 +48,22 @@ export class KeyBoard extends Component {
         break;
 
       case "DEL":
+        var inputLine = this.getInputLine();
+        var inputLineLen = inputLine.length;
+        var inputLineVal = parseFloat(this.getInputLine());
+
+        if (inputLine === "0") {
+          break; // do nothing
+        }
+        else if (inputLineVal === 0.0) {
+          this.setInputLine("0"); // convert -0, 0. and -0. to just 0
+        }
+        else if (inputLineLen === 1) {
+          this.setInputLine("0"); // if only a single digit, convert to 0
+        }
+        else {
+          this.setInputLine(inputLine.substr(0, inputLineLen - 1)); // chop off trailing character (digit or decimal)
+        }
         break;
 
       case "DIV":
