@@ -1,9 +1,9 @@
 using System;
 using Xunit;
 
-namespace rpn_calc_test
+namespace RpnEvalTests
 {
-    public class ExpressionEvalTests
+    public class RpnEvalApiTests
     {
         [Fact]
         public void AlwaysSucceeds()
