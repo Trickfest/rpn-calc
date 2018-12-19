@@ -67,16 +67,10 @@ export class KeyBoard extends Component {
         break;
 
       case "DIV":
-        break;
-
       case "MULT":
-        break;
-
       case "SUB":
-        break;
-
       case "ADD":
-        this.stackPop();
+        this.evalOp(event.target.id)
         break;
 
       case "DECIMAL":
@@ -105,6 +99,14 @@ export class KeyBoard extends Component {
         alert("unhandled input"); // bug if this code is reached
         break;
     }
+  }
+
+  evalOp(op){
+    // todo - left off here
+    // operand1 is pop stack (zero if stack empty)
+    // operand2 is input line
+    // operation is DIV,MULT,ADD,SUB
+    // put result on input line
   }
 
   getInputLine() {
