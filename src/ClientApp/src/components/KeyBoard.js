@@ -184,8 +184,8 @@ export class KeyBoard extends Component {
     var r = Stack._instance.pop();
 
     // if the stack is empty, then a zero is implied
-    // this appears to be what the old HP calculators
-    // use to do - https://hp15c.com/web/hp15c.html
+    // this appears to be what the old HP calculators did
+    // https://hp15c.com/web/hp15c.html
     if (r === null) {
       r = "0";
     }
