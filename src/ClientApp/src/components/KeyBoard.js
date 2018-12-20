@@ -12,6 +12,8 @@ export class KeyBoard extends Component {
   }
 
   handleClick(event) {
+    var inputLine = this.getInputLine();
+
     switch (event.target.id) {
       case "0":
       case "1":
@@ -27,14 +29,14 @@ export class KeyBoard extends Component {
         if (this.strDigits() >= 9)
           break;
 
-        if (this.getInputLine() === "0") {
+        if (inputLine === "0") {
           this.setInputLine(event.target.id);
         }
-        else if (this.getInputLine() === "-0") {
+        else if (inputLine === "-0") {
           this.setInputLine("-" + event.target.id);
         }
         else {
-          this.setInputLine(this.getInputLine() + event.target.id);
+          this.setInputLine(inputLine + event.target.id);
         }
         break;
 
@@ -48,9 +50,8 @@ export class KeyBoard extends Component {
         break;
 
       case "DEL":
-        var inputLine = this.getInputLine();
         var inputLineLen = inputLine.length;
-        var inputLineVal = parseFloat(this.getInputLine());
+        var inputLineVal = parseFloat(inputLine);
 
         if (inputLine === "0") {
           break; // do nothing
@@ -58,8 +59,8 @@ export class KeyBoard extends Component {
         else if (inputLineVal === 0.0) {
           this.setInputLine("0"); // convert -0, 0. and -0. to just 0
         }
-        else if (inputLineLen === 1) {
-          this.setInputLine("0"); // if only a single digit, convert to 0
+        else if ((inputLineLen === 1) || (inputLineLen === 2 && inputLine[0] === '-')) {
+          this.setInputLine("0"); // if only a single digit (either positive or negative), convert to 0
         }
         else {
           this.setInputLine(inputLine.substr(0, inputLineLen - 1)); // chop off trailing character (digit or decimal)
@@ -74,13 +75,12 @@ export class KeyBoard extends Component {
         break;
 
       case "DECIMAL":
-        if (!this.getInputLine().includes(".")) {
-          this.setInputLine(this.getInputLine() + ".");
+        if (!inputLine.includes(".")) {
+          this.setInputLine(inputLine + ".");
         }
         break;
 
       case "POS-NEG":
-        var inputLine = this.getInputLine();
         if (inputLine.charAt(0) === '-') {
           inputLine = inputLine.substr(1);
         }
@@ -91,7 +91,7 @@ export class KeyBoard extends Component {
         break;
 
       case "ENT":
-        this.stackPush(this.getInputLine());
+        this.stackPush(inputLine);
         this.setInputLine("0");
         break;
 
