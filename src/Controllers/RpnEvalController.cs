@@ -4,25 +4,30 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace apitest.Controllers
+namespace RpnCalc.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class RpnEvalController : ControllerBase
     {
+        public const string HELP_TEXT = "this is help text";
+
         // GET api/rpneval/5/6/d
         [HttpGet("{*opStr}")]
-        public ActionResult<string> Get(string opStr)
-        {
-            return eval(opStr);
-        }
-
-        private string eval(string opStr)
+        public ActionResult<JsonResult> Get(string opStr)
         {
             if (string.IsNullOrWhiteSpace(opStr))
-                return "this is help text";
-            else
-                return opStr;
+            {
+                return new JsonResult(new RpnEvalResult() { message = HELP_TEXT, result = null });
+            }
+            return null;
         }
+    }
+
+    public class RpnEvalResult
+    {
+        public string message { get; set; }
+
+        public string result { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using System;
-using apitest.Controllers;
+using RpnCalc.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 namespace RpnEvalTests
@@ -13,15 +14,21 @@ namespace RpnEvalTests
         }
 
         [Fact]
-        public void CheckForHelpText() 
+        public void CheckForHelpText()
         {
-            var ctl = new RpnEvalController();
+            var rpnEvalController = new RpnEvalController();
 
-            var r1 = ctl.Get("");
-            Assert.True(r1.Value == "this is help text");
-            
-            var r2 = ctl.Get(null);
-            Assert.True(r2.Value == "this is help text");
+            var whitespaceResult = ((RpnCalc.Controllers.RpnEvalResult)rpnEvalController.Get("        ").Value.Value);
+            Assert.True(whitespaceResult.message == RpnCalc.Controllers.RpnEvalController.HELP_TEXT);
+            Assert.True(whitespaceResult.result == null);
+
+            var nullResult = ((RpnCalc.Controllers.RpnEvalResult)rpnEvalController.Get(null).Value.Value);
+            Assert.True(nullResult.message == RpnCalc.Controllers.RpnEvalController.HELP_TEXT);
+            Assert.True(nullResult.result == null);
+
+            var emptyStringResult = ((RpnCalc.Controllers.RpnEvalResult)rpnEvalController.Get("").Value.Value);
+            Assert.True(emptyStringResult.message == RpnCalc.Controllers.RpnEvalController.HELP_TEXT);
+            Assert.True(emptyStringResult.result == null);
         }
     }
 }
