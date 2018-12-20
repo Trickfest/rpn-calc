@@ -30,5 +30,35 @@ namespace RpnEvalTests
             Assert.True(emptyStringResult.message == RpnCalc.Controllers.RpnEvalController.HELP_TEXT);
             Assert.True(emptyStringResult.result == null);
         }
+
+        [Fact]
+        public void SimpleExpressionTests()
+        {
+            var rpnEvalController = new RpnEvalController();
+
+            {
+                var result = ((RpnCalc.Controllers.RpnEvalResult)rpnEvalController.Get("10/5/p").Value.Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.SUCCESS_TEXT);
+                Assert.True(double.Parse(result.result) == 15);
+            }
+
+            {
+                var result = ((RpnCalc.Controllers.RpnEvalResult)rpnEvalController.Get("10/5/s").Value.Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.SUCCESS_TEXT);
+                Assert.True(double.Parse(result.result) == 5);
+            }
+
+            {
+                var result = ((RpnCalc.Controllers.RpnEvalResult)rpnEvalController.Get("10/5/m").Value.Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.SUCCESS_TEXT);
+                Assert.True(double.Parse(result.result) == 50);
+            }
+            
+            {
+                var result = ((RpnCalc.Controllers.RpnEvalResult)rpnEvalController.Get("10/5/d").Value.Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.SUCCESS_TEXT);
+                Assert.True(double.Parse(result.result) == 2);
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace RpnCalc.Controllers
     public class RpnEvalController : ControllerBase
     {
         public const string HELP_TEXT = "this is help text";
+        public const string SUCCESS_TEXT = "success";
 
         // GET api/rpneval/5/6/d
         [HttpGet("{*opStr}")]
