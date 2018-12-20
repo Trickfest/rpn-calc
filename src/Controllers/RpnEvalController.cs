@@ -24,11 +24,11 @@ namespace RpnCalc.Controllers
 
         // GET api/rpneval/5/6/d
         [HttpGet("{*opStr}")]
-        public ActionResult<JsonResult> Get(string opStr)
+        public ActionResult<RpnEvalResult> Get(string opStr)
         {
             if (string.IsNullOrWhiteSpace(opStr))
             {
-                return new JsonResult(new RpnEvalResult() { message = HELP_TEXT, answer = null });
+                return new RpnEvalResult() { message = HELP_TEXT, answer = null };
             }
 
             string[] tokens = opStr.Split('/');
@@ -47,7 +47,7 @@ namespace RpnCalc.Controllers
                     // if there are not two items on the stack, then expression is invalid
                     if (stack.Count < 2)
                     {
-                        return new JsonResult(new RpnEvalResult() { message = INVALID_EXPRESSION_TEXT, answer = null });
+                        return new RpnEvalResult() { message = INVALID_EXPRESSION_TEXT, answer = null };
                     }
 
                     decimal op2 = stack.Pop();
@@ -74,24 +74,24 @@ namespace RpnCalc.Controllers
                         case "d":
                             if (op2 == decimal.Zero)
                             {
-                                return new JsonResult(new RpnEvalResult() { message = DIVIDE_BY_ZERO_TEXT, answer = null });
+                                return new RpnEvalResult() { message = DIVIDE_BY_ZERO_TEXT, answer = null };
                             }
                             stack.Push(op1 / op2);
                             break;
 
                         default:
-                            return new JsonResult(new RpnEvalResult() { message = INVALID_OPERATOR_TEXT, answer = null });
+                            return new RpnEvalResult() { message = INVALID_OPERATOR_TEXT, answer = null };
                     }
                 }
             }
 
-            // not a single result on the stack - treat as error
+            // more than a single result on the stack - treat as error
             if (stack.Count > 1)
             {
-                return new JsonResult(new RpnEvalResult() { message = INCOMPLETE_EXPRESSION_TEXT, answer = null });
+                return new RpnEvalResult() { message = INCOMPLETE_EXPRESSION_TEXT, answer = null };
             }
 
-            return new JsonResult(new RpnEvalResult() { message = SUCCESS_TEXT, answer = stack.Pop().ToString() });
+            return new RpnEvalResult() { message = SUCCESS_TEXT, answer = stack.Pop().ToString() };
         }
     }
 
