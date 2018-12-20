@@ -5,6 +5,9 @@ import { InputLine } from './InputLine';
 export class KeyBoard extends Component {
   displayName = KeyBoard.name
 
+  ERROR_TEXT = "ERROR";
+  OVERFLOW_TEXT = "OVERFLOW";
+
   constructor(props) {
     super(props);
 
@@ -26,10 +29,10 @@ export class KeyBoard extends Component {
       case "8":
       case "9":
         // ignore input over a somewhat arbitrary length cap - similar to iPhone calculator
-        if (this.strDigits() >= 9)
+        if (this.strDigits(inputLine) >= 9)
           break;
 
-        if (inputLine === "0") {
+        if ((inputLine === "0") || this.isErrorMsg(inputLine)) {
           this.setInputLine(event.target.id);
         }
         else if (inputLine === "-0") {
@@ -56,6 +59,9 @@ export class KeyBoard extends Component {
         if (inputLine === "0") {
           break; // do nothing
         }
+        else if (this.isErrorMsg(inputLine)) {
+          this.setInputLine("0");
+        }
         else if (inputLineVal === 0.0) {
           this.setInputLine("0"); // convert -0, 0. and -0. to just 0
         }
@@ -71,16 +77,27 @@ export class KeyBoard extends Component {
       case "MULT":
       case "SUB":
       case "ADD":
-        this.evalOp(event.target.id)
+        if (this.isErrorMsg(inputLine)) {
+          break; // do nothing
+        }
+        this.evalOp(event.target.id, inputLine)
         break;
 
       case "DECIMAL":
+        if (this.isErrorMsg(inputLine)) {
+          break; // do nothing
+        }
+
         if (!inputLine.includes(".")) {
           this.setInputLine(inputLine + ".");
         }
         break;
 
       case "POS-NEG":
+        if (this.isErrorMsg(inputLine)) {
+          break; // do nothing
+        }
+
         if (inputLine.charAt(0) === '-') {
           inputLine = inputLine.substr(1);
         }
@@ -91,6 +108,10 @@ export class KeyBoard extends Component {
         break;
 
       case "ENT":
+        if (this.isErrorMsg(inputLine)) {
+          break; // do nothing
+        }
+
         this.stackPush(inputLine);
         this.setInputLine("0");
         break;
@@ -101,12 +122,46 @@ export class KeyBoard extends Component {
     }
   }
 
-  evalOp(op){
-    // todo - left off here
-    // operand1 is pop stack (zero if stack empty)
-    // operand2 is input line
-    // operation is DIV,MULT,ADD,SUB
-    // put result on input line
+  evalOp(operator, inputLine) {
+    var op1 = this.stackPop();
+    var op2 = inputLine;
+    var operatorSymbol;
+
+    switch (operator) {
+      case "DIV":
+        operatorSymbol = "d";
+        break;
+
+      case "MULT":
+        operatorSymbol = "m";
+        break;
+
+      case "SUB":
+        operatorSymbol = "s";
+        break;
+
+      case "ADD":
+        operatorSymbol = "a";
+        break;
+
+      default:
+        alert("invalid operator"); // bug if this code is reached
+        break;
+    }
+
+    fetch('api/rpneval/' + op1 + '/' + op2 + '/' + operatorSymbol)
+      .then(response => response.json())
+      .then(data => {
+        if (data.answer == null) {
+          this.setInputLine(this.ERROR_TEXT);
+        }
+        else if (this.strDigits(data.answer) > 9) {
+          this.setInputLine(this.OVERFLOW_TEXT);
+        }
+        else {
+          this.setInputLine(data.answer);
+        }
+      });
   }
 
   getInputLine() {
@@ -117,12 +172,25 @@ export class KeyBoard extends Component {
     InputLine._instance.set(s);
   }
 
+  isErrorMsg(s) {
+    return (s === this.ERROR_TEXT || s === this.OVERFLOW_TEXT);
+  }
+
   stackPush(s) {
     Stack._instance.push(s);
   }
 
   stackPop() {
-    return Stack._instance.pop();
+    var r = Stack._instance.pop();
+
+    // if the stack is empty, then a zero is implied
+    // this appears to be what the old HP calculators
+    // use to do - https://hp15c.com/web/hp15c.html
+    if (r === null) {
+      r = "0";
+    }
+
+    return r;
   }
 
   stackReset() {
@@ -130,14 +198,17 @@ export class KeyBoard extends Component {
   }
 
   // return number of digits in string
-  strDigits() {
-    var result = this.getInputLine().length;
-    if (this.getInputLine().includes(".")) {
+  strDigits(s) {
+    var result = s.length;
+
+    if (s.includes(".")) {
       result--;
     }
-    if (this.getInputLine().includes("-")) {
+
+    if (s.includes("-")) {
       result--;
     }
+
     return result;
   }
 
