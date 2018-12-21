@@ -71,15 +71,39 @@ namespace RpnEvalTests
                 Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.INVALID_OPERATOR_TEXT);
                 Assert.True(result.answer == null);
             }
+            
+            {
+                var result = ((RpnEvalResult)rpnEvalController.Get("10/5/*").Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.INVALID_OPERATOR_TEXT);
+                Assert.True(result.answer == null);
+            }
+            
+            {
+                var result = ((RpnEvalResult)rpnEvalController.Get("10/5/+").Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.INVALID_OPERATOR_TEXT);
+                Assert.True(result.answer == null);
+            }
 
             {
-                var result = ((RpnEvalResult)rpnEvalController.Get("5/+").Value);
+                var result = ((RpnEvalResult)rpnEvalController.Get("10/5/-").Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.INVALID_OPERATOR_TEXT);
+                Assert.True(result.answer == null);
+            }
+            
+            {
+                var result = ((RpnEvalResult)rpnEvalController.Get("10/5/x").Value);
+                Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.INVALID_OPERATOR_TEXT);
+                Assert.True(result.answer == null);
+            }
+
+            {
+                var result = ((RpnEvalResult)rpnEvalController.Get("5/a").Value);
                 Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.INVALID_EXPRESSION_TEXT);
                 Assert.True(result.answer == null);
             }
 
             {
-                var result = ((RpnEvalResult)rpnEvalController.Get("+").Value);
+                var result = ((RpnEvalResult)rpnEvalController.Get("a").Value);
                 Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.INVALID_EXPRESSION_TEXT);
                 Assert.True(result.answer == null);
             }
@@ -127,7 +151,7 @@ namespace RpnEvalTests
             }
 
             {
-                var result = ((RpnEvalResult)rpnEvalController.Get("-10.4/-3.7/a/4/s/2/*/04.00/2/d/d/2/d/5.0/0002.000/*/x/00.007/-/-00005.50000/+").Value);
+                var result = ((RpnEvalResult)rpnEvalController.Get("-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a").Value);
                 Assert.True(result.message == RpnCalc.Controllers.RpnEvalController.SUCCESS_TEXT);
                 Assert.True(decimal.Parse(result.answer) == (decimal)-96.007);
             }

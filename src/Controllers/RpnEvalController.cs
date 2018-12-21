@@ -56,18 +56,14 @@ namespace RpnCalc.Controllers
                     switch (token)
                     {
                         case "a":
-                        case "+":
                             stack.Push(op1 + op2);
                             break;
 
                         case "s":
-                        case "-":
                             stack.Push(op1 - op2);
                             break;
 
                         case "m":
-                        case "*":
-                        case "x":
                             stack.Push(op1 * op2);
                             break;
 
