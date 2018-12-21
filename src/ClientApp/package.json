@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "enzyme": "3.7.0",
+    "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
