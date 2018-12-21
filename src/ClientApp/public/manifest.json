@@ -1,6 +1,6 @@
 {
-  "short_name": "rpn_calc",
-  "name": "rpn_calc",
+  "short_name": "rpn-calc",
+  "name": "rpn-calc",
   "icons": [
     {
       "src": "favicon.ico",
