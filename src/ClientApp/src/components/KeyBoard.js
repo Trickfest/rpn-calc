@@ -12,12 +12,91 @@ export class KeyBoard extends Component {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+
+    this.handleKeypress = this.handleKeypress.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("keypress", this.handleKeypress, false);
+    document.addEventListener("keydown", this.handleKeydown, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keypress", this.handleKeypress, false);
+    document.removeEventListener("keydown", this.handleKeydown, false);
+  }
+
+  handleKeypress(event) {
+    switch (event.keyCode) {
+      case 48:
+      case 49:
+      case 50:
+      case 51:
+      case 52:
+      case 53:
+      case 54:
+      case 55:
+      case 56:
+      case 57:
+        this.handleInput(String.fromCharCode(event.keyCode));
+        break;
+
+      case 46:
+        this.handleInput("DECIMAL");
+        break;
+
+      case 43:
+        this.handleInput("ADD");
+        break;
+
+      case 45:
+        this.handleInput("SUB");
+        break;
+
+      case 42:
+        this.handleInput("MULT");
+        break;
+
+      case 47:
+        this.handleInput("DIV");
+        break;
+
+      case 13:
+        this.handleInput("ENT");
+        break;
+
+      case 78:
+      case 110:
+        this.handleInput("POS-NEG"); // N or n
+        break;
+
+      case 8:
+        this.handleInput("DEL");
+        break;
+
+      default: // ignore anything else - default is specified to suppress warning
+        break;
+    }
+  }
+
+  handleKeydown(event) {
+    if (event.keyCode === 27) {
+      this.handleInput("CE"); // clear out inputline
+    }
+    else if (event.keyCode === 46) {
+      this.handleInput("DEL");
+    }
   }
 
   handleClick(event) {
+    this.handleInput(event.target.id)
+  }
+
+  handleInput(id) {
     var inputLine = this.getInputLine();
 
-    switch (event.target.id) {
+    switch (id) {
       case "0":
       case "1":
       case "2":
@@ -33,13 +112,13 @@ export class KeyBoard extends Component {
           break;
 
         if ((inputLine === "0") || this.isErrorMsg(inputLine)) {
-          this.setInputLine(event.target.id);
+          this.setInputLine(id);
         }
         else if (inputLine === "-0") {
-          this.setInputLine("-" + event.target.id);
+          this.setInputLine("-" + id);
         }
         else {
-          this.setInputLine(inputLine + event.target.id);
+          this.setInputLine(inputLine + id);
         }
         break;
 
@@ -80,7 +159,7 @@ export class KeyBoard extends Component {
         if (this.isErrorMsg(inputLine)) {
           break; // do nothing
         }
-        this.evalOp(event.target.id, inputLine)
+        this.evalOp(id, inputLine)
         break;
 
       case "DECIMAL":
