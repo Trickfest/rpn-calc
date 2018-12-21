@@ -82,6 +82,18 @@ TODO: Guide users through getting your code up and running on their own system. 
 
 TODO: Describe and show how to build your code and run the tests.
 
+### Command Line Testing
+
+To test from the command line, try some of the following commands.
+
+    # answer: 7
+    curl https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
+    Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
+
+    # answer: -96.007000
+    curl https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
+    Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
+
 ## Contribute
 
 No contributions as this time.
