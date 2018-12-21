@@ -12,7 +12,7 @@ export class NavMenu extends Component {
       <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>rpn_calc</Link>
+            <Link to={'/'}>RPN-CALC</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
