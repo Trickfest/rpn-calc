@@ -22,7 +22,7 @@ For example, use Azure Boards to plan and track work as the project progresses.
 ### Learn something new
 
 Besides exploring Azure DevOps, also use this project to learn something new.
-For example, take the opportunity to explre a new web framework or TDD tool.
+For example, take the opportunity to explore a new web framework or TDD tool.
 It's OK if the technology selection doesn't make total sense or is overkill for the task at hand.
 
 ### Cross platform for both development and deployment
@@ -37,7 +37,7 @@ Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), 
 
 ## Technology Stack and Implementation Notes
 
-* In order to check the cross-platform box (which predominately impacts the API backend)
+* In order to check the cross-platform box
   * Implement the API using .NET Core/C#.
   * ASP.NET Core is used as the web framework for implementing the API.
   * Unit testing support provided by xUnit
@@ -66,7 +66,8 @@ In terms of React components, create the following tree of components:
     * Stack
     * Input Line
   * Keyboard
-    * Collection of buttons  (as implementation progresses, may futher refine this into either rows and/or types of buttons)
+    * Collection of buttons
+    * The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the backend API for expression evaluation.
 
 To keep things manageable, stick with one CSS file for the entire calculator (instead of one per component).
 
@@ -93,7 +94,3 @@ To test from the command line, try some of the following commands.
     # answer: -96.007000
     curl https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
     Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
-
-## Contribute
-
-No contributions as this time.
