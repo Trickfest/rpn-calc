@@ -234,7 +234,7 @@ export class KeyBoard extends Component {
         if (data.answer == null) {
           this.setInputLine(this.ERROR_TEXT);
         }
-        else if (this.strDigits(data.answer) > 9) {
+        else if (this.strDigits(this.truncateNumber(data.answer)) > 9) {
           this.setInputLine(this.OVERFLOW_TEXT);
         }
         else {
@@ -277,6 +277,9 @@ export class KeyBoard extends Component {
   }
 
   // return number of digits in string
+  // intentionally not a general purpose
+  // routine - requires a well formed 
+  // decimal number
   strDigits(s) {
     var result = s.length;
 
@@ -289,6 +292,19 @@ export class KeyBoard extends Component {
     }
 
     return result;
+  }
+
+  // Limit the number of digits in a value to nine, not counting the decimal or negative sign.
+  // If necessary, truncate digits to right of the decimal point in order to fit within the nine digit limit.
+  // If after truncation, the number of digits exceeds nine, display an overflow error.
+  truncateNumber(s) {
+    // TODO implement
+    // find position of decimal (if any)
+    // derive number of digits to left
+    // derive number of digits to right
+    // truncate as many digits as necessary on the right
+    // return result
+    return s;
   }
 
   render() {
