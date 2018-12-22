@@ -92,7 +92,17 @@ TODO: Guide users through getting your code up and running on their own system. 
 
 ## Build and Test
 
-TODO: Describe and show how to build your code and run the tests.
+To build the project, execute the following from the project root.
+
+    dotnet build
+
+To test the ASP.NET Core portion of the project, execute the following in the ./tests subdirectory.
+
+    dotnet test
+
+Finally, to test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.
+
+    npm test
 
 ### Command Line Testing
 
