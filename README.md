@@ -57,6 +57,17 @@ Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), 
     * Deploying initially to a "UAT" environment and then later on deploying to "PROD" when a manual approval step is performed.
     * Blue-Green deployments using Azure Traffic Manager.
 
+* I'm not trying to build a production quality calculator here, so I intentionally cut a few corners with regards to precision.
+  * Limit the number of digits in a value to nine, not counting the decimal or negative sign.
+  * If necessary, truncate digits to right of the decimal point in order to fit within the nine digit limit.
+  * If after truncation, the number of digits exceeds nine, display an overflow error.
+
+* I am not an experienced user of "real" RPN calculators, so I am not sure what the correct behavior is with regards to an empty stack condition.  For my purposes, a pop of my calculator's stack returns a zero if the stack is empty.
+
+* On the other hand, the RPN expression evaluation API is unforgiving.  If there are insufficient values on the stack to perform an operation, an error is returned.  Also, if the stack contains more than a single value after an expression is fully evaluated, that is treated as an error condition.
+
+* Also in the API, in order to avoid conflicts with URL interpretation, the letters __a__, __s__, __m__ and __d__ are used as substitutes for operations __+__, __-__, __*__ and __/__ respectively.
+
 ## Calculator Component Layout
 
 In terms of React components, create the following tree of components:
@@ -69,7 +80,7 @@ In terms of React components, create the following tree of components:
     * Collection of buttons
     * The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the backend API for expression evaluation.
 
-To keep things manageable, stick with one CSS file for the entire calculator (instead of one per component).
+To keep things manageable, I stick with one CSS file for the entire calculator (instead of one per component).
 
 ## Getting Started
 
