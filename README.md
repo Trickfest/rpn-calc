@@ -84,13 +84,19 @@ To keep things manageable, I stick with one CSS file for the entire calculator (
 
 ## Getting Started
 
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.Installation process
-2.Software dependencies
-3.Latest releases
-4.API references
+I alternated (somewhat randomly) between macOS and Windows in the development of this project.  On both platforms I utilized VS Code as the editor.  However, VS Code is not required to build, test and run the project.
+
+### Software Prerequsites
+
+todo
+
+todo
 
 ## Build and Test
+
+Clone the repo with the following command:
+
+    git clone http://todo.com
 
 To build the project, execute the following from the project root.
 
@@ -103,6 +109,14 @@ To test the ASP.NET Core portion of the project, execute the following in the ./
 Finally, to test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.
 
     npm test
+
+Execute the command below to run the application from the command line and browse to __<https://localhost:5001>__.
+
+    dotnet run
+
+Note that the __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
+
+Also, if using VS Code, you should be able to just press __ctrl+F5__ to run the application as __~/.vscode/launch.json__ is part of the project.
 
 ### Command Line Testing
 
