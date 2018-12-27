@@ -235,11 +235,14 @@ export class KeyBoard extends Component {
         if (data.answer == null) {
           this.setInputLine(this.ERROR_TEXT);
         }
-        else if (this.strDigits(this.limitNumber(data.answer)) > this.MAX_DIGITS) {
-          this.setInputLine(this.OVERFLOW_TEXT);
-        }
         else {
-          this.setInputLine(data.answer);
+          var limitedNumber = this.limitNumber(data.answer);
+          if (this.strDigits(limitedNumber) > this.MAX_DIGITS) {
+            this.setInputLine(this.OVERFLOW_TEXT);
+          }
+          else {
+            this.setInputLine(limitedNumber);
+          }
         }
       });
   }
@@ -333,7 +336,7 @@ export class KeyBoard extends Component {
     if (s.indexOf(".") !== -1) {
       s = s.replace(/0+$/, ''); // trim any trailing zeroes
     }
-    
+
     return s;
   }
 
