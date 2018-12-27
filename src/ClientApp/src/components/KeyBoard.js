@@ -310,7 +310,8 @@ export class KeyBoard extends Component {
       s = s.replace(/0+$/, '');
     }
 
-    s = s.replace(/\.+$/, ''); // if number ends in decimal, trim it
+    // if number ends in decimal, trim it
+    s = s.replace(/\.+$/, ''); 
 
     if (s.indexOf(".") === -1) { // if no decimal - nothing to do
       return s;
@@ -336,6 +337,9 @@ export class KeyBoard extends Component {
     if (s.indexOf(".") !== -1) {
       s = s.replace(/0+$/, ''); // trim any trailing zeroes
     }
+
+    // finally, if number ends in decimal, trim it
+    s = s.replace(/\.+$/, ''); 
 
     return s;
   }

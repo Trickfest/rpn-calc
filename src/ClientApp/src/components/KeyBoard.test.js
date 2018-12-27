@@ -52,6 +52,8 @@ describe("KeyBoard Suite", function () {
         expect(instance.limitNumber("12345678900000")).toBe("12345678900000"); 
         expect(instance.limitNumber("3.3333333333333333333333333333")).toBe("3.33333333");
         expect(instance.limitNumber("-3.3333333333333333333333333333")).toBe("-3.33333333");
+        expect(instance.limitNumber(".000000033")).toBe(".000000033"); 
+        expect(instance.limitNumber("-.000000033")).toBe("-.000000033"); 
 
         // limiting occurs tests
         expect(instance.limitNumber("1234.567891")).toBe("1234.56789");
@@ -70,6 +72,8 @@ describe("KeyBoard Suite", function () {
         expect(instance.limitNumber("-123456789.9")).toBe("-123456790");        
         expect(instance.limitNumber("12345678900000.00000")).toBe("12345678900000");         
         expect(instance.limitNumber("12345678900000.000001")).toBe("12345678900000"); 
+        expect(instance.limitNumber(".0000000033")).toBe(".000000003"); 
+        expect(instance.limitNumber("-.0000000033")).toBe("-.000000003");
     });
 
 });
