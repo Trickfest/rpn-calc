@@ -7,6 +7,7 @@ export class KeyBoard extends Component {
 
   ERROR_TEXT = "ERROR";
   OVERFLOW_TEXT = "OVERFLOW";
+  MAX_DIGITS = 9;
 
   constructor(props) {
     super(props);
@@ -108,7 +109,7 @@ export class KeyBoard extends Component {
       case "8":
       case "9":
         // ignore input over a somewhat arbitrary length cap - similar to iPhone calculator
-        if (this.strDigits(inputLine) >= 9)
+        if (this.strDigits(inputLine) >= this.MAX_DIGITS)
           break;
 
         if ((inputLine === "0") || this.isErrorMsg(inputLine)) {
@@ -234,7 +235,7 @@ export class KeyBoard extends Component {
         if (data.answer == null) {
           this.setInputLine(this.ERROR_TEXT);
         }
-        else if (this.strDigits(this.truncateNumber(data.answer)) > 9) {
+        else if (this.strDigits(this.limitNumber(data.answer)) > this.MAX_DIGITS) {
           this.setInputLine(this.OVERFLOW_TEXT);
         }
         else {
@@ -294,16 +295,45 @@ export class KeyBoard extends Component {
     return result;
   }
 
-  // Limit the number of digits in a value to nine, not counting the decimal or negative sign.
-  // If necessary, truncate digits to right of the decimal point in order to fit within the nine digit limit.
-  // If after truncation, the number of digits exceeds nine, display an overflow error.
-  truncateNumber(s) {
-    // TODO implement
-    // find position of decimal (if any)
-    // derive number of digits to left
-    // derive number of digits to right
-    // truncate as many digits as necessary on the right
-    // return result
+  // If possible, limit the precision of the number in order to keep number of digits < MAX_DIGITS
+  // If necessary, truncate digits to right of the decimal point in order to fit within the MAX_DIGITS limit
+  // Also, delete any leading or trailing zeroes
+  // 
+  // Note: number may still exceed MAX_DIGITS after limiting precision - that is expected behavior and will
+  // be handled elsewhere
+  limitNumber(s) {
+    // if string contains a decimal, delete trailing zeroes
+    if (s.indexOf(".") !== -1) {
+      s = s.replace(/0+$/, '');
+    }
+
+    s = s.replace(/\.+$/, ''); // if number ends in decimal, trim it
+
+    if (s.indexOf(".") === -1) { // if no decimal - nothing to do
+      return s;
+    }
+
+    // split number into left of decimal and right of decimal
+    var a = s.split(".");
+
+    // figure out how many digits after the decimal we can handle
+    var precision = Math.max(this.MAX_DIGITS - this.strDigits(s) + a[1].length, 0);
+
+    // get the float value of the string
+    var floatVal = parseFloat(s);
+
+    // convert to string of fixed precision
+    s = floatVal.toFixed(precision);
+
+    // if fractional number (pos or neg), then delete leading zero
+    if (Math.abs(floatVal) < 1.0) {
+      s = s.replace('0', '');
+    }
+
+    if (s.indexOf(".") !== -1) {
+      s = s.replace(/0+$/, ''); // trim any trailing zeroes
+    }
+    
     return s;
   }
 
