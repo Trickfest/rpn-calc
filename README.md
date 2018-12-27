@@ -120,12 +120,20 @@ Also, if using VS Code, you should be able to just press __ctrl+F5__ to run the 
 
 ### Command Line Testing
 
-To test from the command line, try some of the following commands.
+To test from the command line, try some of the following commands.  (Expressions evaluate to 7 and -96.007000 respectively.)
 
-    # answer: 7
+Curl
+
     curl https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
+
+PowerShell
+
     Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
 
-    # answer: -96.007000
+Curl
+
     curl https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
+
+PowerShell
+
     Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
