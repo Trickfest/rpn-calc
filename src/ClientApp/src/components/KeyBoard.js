@@ -8,6 +8,7 @@ export class KeyBoard extends Component {
   ERROR_TEXT = "ERROR";
   OVERFLOW_TEXT = "OVERFLOW";
   MAX_DIGITS = 9;
+  KEY_FLASH_COLOR = "gray";
 
   constructor(props) {
     super(props);
@@ -95,6 +96,8 @@ export class KeyBoard extends Component {
   }
 
   handleInput(id) {
+    this.flashDiv(id);
+
     var inputLine = this.getInputLine();
 
     switch (id) {
@@ -200,6 +203,16 @@ export class KeyBoard extends Component {
         alert("unhandled input"); // bug if this code is reached
         break;
     }
+  }
+
+  flashDiv(id) {
+    var color = document.getElementById(id).style.color;
+
+    document.getElementById(id).style.backgroundColor = this.KEY_FLASH_COLOR;
+    
+    setTimeout(function () {
+      document.getElementById(id).style.backgroundColor = color;
+    }, 100);
   }
 
   evalOp(operator, inputLine) {
@@ -311,7 +324,7 @@ export class KeyBoard extends Component {
     }
 
     // if number ends in decimal, trim it
-    s = s.replace(/\.+$/, ''); 
+    s = s.replace(/\.+$/, '');
 
     if (s.indexOf(".") === -1) { // if no decimal - nothing to do
       return s;
@@ -339,7 +352,7 @@ export class KeyBoard extends Component {
     }
 
     // finally, if number ends in decimal, trim it
-    s = s.replace(/\.+$/, ''); 
+    s = s.replace(/\.+$/, '');
 
     return s;
   }
