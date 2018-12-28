@@ -88,15 +88,20 @@ I alternated (somewhat randomly) between macOS and Windows in the development of
 
 ### Software Prerequsites
 
-todo
+Software stack at time of this writing:
 
-todo
+* Windows
+  * .NET Core - 2.2.100
+  * Npm - 6.4.1
+* MacOS
+  * .NET Core - 2.2.100
+  * Npm - TODO
 
 ## Build and Test
 
 Clone the repo with the following command:
 
-    git clone http://todo.com
+    git clone https://mtharris.visualstudio.com/DefaultCollection/rpn-calc/_git/rpn-calc
 
 To build the project, execute the following from the project root.
 
@@ -114,9 +119,11 @@ Execute the command below to run the application from the command line and brows
 
     dotnet run
 
-Note that the __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
+Some things to keep in mind:
 
-Also, if using VS Code, you should be able to just press __ctrl+F5__ to run the application as __~/.vscode/launch.json__ is part of the project.
+* The __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
+* If using VS Code, you should be able to just press __ctrl+F5__ to run the application as __~/.vscode/launch.json__ is part of the project.
+* The calculator app requires a TLS connection with the client (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed in order to run locally.  See __dotnet dev-certs https --help__ for more information.
 
 ### Command Line Testing
 

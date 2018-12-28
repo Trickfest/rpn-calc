@@ -6,188 +6,213 @@ export class Home extends Component {
   render() {
     return (
       <div>
-<h1 id="rpncalc">RPN-CALC</h1>
+        <h1 id="rpncalc">RPN-CALC</h1>
+        <i>Version: 20181228.1</i>
 
-<h2 id="introduction">Introduction</h2>
+        <h2 id="introduction">Introduction</h2>
 
-<p>Implement a Reverse Polish Notation (RPN) calculator using test-driven
+        <p>Implement a Reverse Polish Notation (RPN) calculator using test-driven
 development (TDD) and set up a Azure DevOps CI/CD pipeline that deploys to Azure.</p>
 
-<h2 id="generalapplicationrequirements">General Application Requirements</h2>
+        <h2 id="generalapplicationrequirements">General Application Requirements</h2>
 
-<ul>
-<li>The calculator can be used by a human via a web browser.</li>
+        <ul>
+          <li>The calculator can be used by a human via a web browser.</li>
 
-<li>The calculator can be used by a client application via a RESTful API (over HTTP/HTTPS).</li>
+          <li>The calculator can be used by a client application via a RESTful API (over HTTP/HTTPS).</li>
 
-<li>When used interactively through the UI, the application displays the contents of the stack as the user makes each entry.</li>
+          <li>When used interactively through the UI, the application displays the contents of the stack as the user makes each entry.</li>
 
-<li>When used by a client application, the application accepts a list of inputs and returns a single result.</li>
-</ul>
+          <li>When used by a client application, the application accepts a list of inputs and returns a single result.</li>
+        </ul>
 
-<h2 id="otherprojectconsiderations">Other Project Considerations</h2>
+        <h2 id="otherprojectconsiderations">Other Project Considerations</h2>
 
-<h3 id="exploreasmuchofazuredevopsaspossible">Explore as much of Azure DevOps as possible</h3>
+        <h3 id="exploreasmuchofazuredevopsaspossible">Explore as much of Azure DevOps as possible</h3>
 
-<p>Even though this is a one-person project, use this project to use and explore as much of Azure DevOps as possible.
+        <p>Even though this is a one-person project, use this project to use and explore as much of Azure DevOps as possible.
 For example, use Azure Boards to plan and track work as the project progresses.</p>
 
-<h3 id="learnsomethingnew">Learn something new</h3>
+        <h3 id="learnsomethingnew">Learn something new</h3>
 
-<p>Besides exploring Azure DevOps, also use this project to learn something new.
-For example, take the opportunity to explore a new web framework or TDD tool.
+        <p>Besides exploring Azure DevOps, also use this project to learn something new.
+        For example, take the opportunity to explore a new web framework or TDD tool.
 It's OK if the technology selection doesn't make total sense or is overkill for the task at hand.</p>
 
-<h3 id="crossplatformforbothdevelopmentanddeployment">Cross platform for both development and deployment</h3>
+        <h3 id="crossplatformforbothdevelopmentanddeployment">Cross platform for both development and deployment</h3>
 
-<p>Again, mostly for the fun of it, the project should be as flexible as possible
-with reqards to development and deployment environments.
-For example, Vim and the command line running on Ubuntu should be a supported developer setup.
-On the opposite end of the spectrum, using a full-blow IDE such as Visual Studio on Windows
+        <p>Again, mostly for the fun of it, the project should be as flexible as possible
+        with reqards to development and deployment environments.
+        For example, Vim and the command line running on Ubuntu should be a supported developer setup.
+        On the opposite end of the spectrum, using a full-blow IDE such as Visual Studio on Windows
 should be an option as well.</p>
 
-<p>Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), etc.</p>
+        <p>Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), etc.</p>
 
-<h2 id="technologystackandimplementationnotes">Technology Stack and Implementation Notes</h2>
+        <h2 id="technologystackandimplementationnotes">Technology Stack and Implementation Notes</h2>
 
+        <ul>
+          <li><p>In order to check the cross-platform box</p>
+
+            <ul>
+              <li>Implement the API using .NET Core/C#.</li>
+
+              <li>ASP.NET Core is used as the web framework for implementing the API.</li>
+
+              <li>Unit testing support provided by xUnit</li></ul></li>
+
+          <li><p>Implement the front-end using React, which addresses the "learn something new" requirement.</p></li>
+
+          <li><p>Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.</p></li>
+
+          <li><p>To keep things simple, rpn-calc is implemented as a single project that contains both the front-end and the back-end.</p>
+
+            <ul>
+              <li>The source code is housed in a single Git repo.</li>
+
+              <li>The application is built and deployed as a single unit.</li></ul></li>
+
+          <li><p>Not surprisingly, use Azure DevOps Pipelines for CI/CD support.</p>
+
+            <ul>
+              <li>For starters, keep it simple: automatically build and deploy to an Azure Web App when the repo's master branch is changed.</li>
+
+              <li>Later on, explore other options such as:</li>
+
+              <li>Dockerizing the application and deploying the container to (say) an AKS cluster, which certainly checks the technology overkill box!</li>
+
+              <li>Deploying initially to a "UAT" environment and then later on deploying to "PROD" when a manual approval step is performed.</li>
+
+              <li>Blue-Green deployments using Azure Traffic Manager.</li></ul></li>
+
+          <li><p>I'm not trying to build a production quality calculator here, so I intentionally cut a few corners with regards to precision.</p>
+
+            <ul>
+              <li>Limit the number of digits in a value to nine, not counting the decimal or negative sign.</li>
+
+              <li>If necessary, truncate digits to right of the decimal point in order to fit within the nine digit limit.</li>
+
+              <li>If after truncation, the number of digits exceeds nine, display an overflow error.</li></ul></li>
+
+          <li><p>I am not an experienced user of "real" RPN calculators, so I am not sure what the correct behavior is with regards to an empty stack condition.  For my purposes, a pop of my calculator's stack returns a zero if the stack is empty.</p></li>
+
+          <li><p>On the other hand, the RPN expression evaluation API is unforgiving.  If there are insufficient values on the stack to perform an operation, an error is returned.  Also, if the stack contains more than a single value after an expression is fully evaluated, that is treated as an error condition.</p></li>
+
+          <li><p>Also in the API, in order to avoid conflicts with URL interpretation, the letters <strong>a</strong>, <strong>s</strong>, <strong>m</strong> and <strong>d</strong> are used as substitutes for operations <strong>+</strong>, <strong>-</strong>, <strong>*</strong> and <strong>/</strong> respectively.</p></li>
+        </ul>
+
+        <h2 id="calculatorcomponentlayout">Calculator Component Layout</h2>
+
+        <p>In terms of React components, create the following tree of components:</p>
+
+        <ul>
+          <li>Calculator - the top-level component
+          
+          
 <ul>
-<li><p>In order to check the cross-platform box</p>
+              <li>Display</li>
 
+              <li>Stack</li>
+
+              <li>Input Line</li>
+
+              <li>Keyboard</li>
+
+              <li>Collection of buttons</li>
+
+              <li>The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the backend API for expression evaluation.</li></ul>
+          </li>
+        </ul>
+
+        <p>To keep things manageable, I stick with one CSS file for the entire calculator (instead of one per component).</p>
+
+        <h2 id="gettingstarted">Getting Started</h2>
+
+        <p>I alternated (somewhat randomly) between macOS and Windows in the development of this project.  On both platforms I utilized VS Code as the editor.  However, VS Code is not required to build, test and run the project.</p>
+
+        <h3 id="softwareprerequsites">Software Prerequsites</h3>
+
+        <p>Software stack at time of this writing:</p>
+
+        <ul>
+          <li>Windows
+          
+          
 <ul>
-<li>Implement the API using .NET Core/C#.</li>
+              <li>.NET Core - 2.2.100</li>
 
-<li>ASP.NET Core is used as the web framework for implementing the API.</li>
+              <li>Npm - 6.4.1</li></ul>
+          </li>
 
-<li>Unit testing support provided by xUnit</li></ul></li>
-
-<li><p>Implement the front-end using React, which addresses the "learn something new" requirement.</p></li>
-
-<li><p>Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.</p></li>
-
-<li><p>To keep things simple, rpn-calc is implemented as a single project that contains both the front-end and the back-end.</p>
-
+          <li>MacOS
+          
+          
 <ul>
-<li>The source code is housed in a single Git repo.</li>
+              <li>.NET Core - 2.2.100</li>
 
-<li>The application is built and deployed as a single unit.</li></ul></li>
+              <li>Npm - TODO</li></ul>
+          </li>
+        </ul>
 
-<li><p>Not surprisingly, use Azure DevOps Pipelines for CI/CD support.</p>
+        <h2 id="buildandtest">Build and Test</h2>
 
-<ul>
-<li>For starters, keep it simple: automatically build and deploy to an Azure Web App when the repo's master branch is changed.</li>
+        <p>Clone the repo with the following command:</p>
 
-<li>Later on, explore other options such as:</li>
-
-<li>Dockerizing the application and deploying the container to (say) an AKS cluster, which certainly checks the technology overkill box!</li>
-
-<li>Deploying initially to a "UAT" environment and then later on deploying to "PROD" when a manual approval step is performed.</li>
-
-<li>Blue-Green deployments using Azure Traffic Manager.</li></ul></li>
-
-<li><p>I'm not trying to build a production quality calculator here, so I intentionally cut a few corners with regards to precision.</p>
-
-<ul>
-<li>Limit the number of digits in a value to nine, not counting the decimal or negative sign.</li>
-
-<li>If necessary, truncate digits to right of the decimal point in order to fit within the nine digit limit.</li>
-
-<li>If after truncation, the number of digits exceeds nine, display an overflow error.</li></ul></li>
-
-<li><p>I am not an experienced user of "real" RPN calculators, so I am not sure what the correct behavior is with regards to an empty stack condition.  For my purposes, a pop of my calculator's stack returns a zero if the stack is empty.</p></li>
-
-<li><p>On the other hand, the RPN expression evaluation API is unforgiving.  If there are insufficient values on the stack to perform an operation, an error is returned.  Also, if the stack contains more than a single value after an expression is fully evaluated, that is treated as an error condition.</p></li>
-
-<li><p>Also in the API, in order to avoid conflicts with URL interpretation, the letters <strong>a</strong>, <strong>s</strong>, <strong>m</strong> and <strong>d</strong> are used as substitutes for operations <strong>+</strong>, <strong>-</strong>, <strong>*</strong> and <strong>/</strong> respectively.</p></li>
-</ul>
-
-<h2 id="calculatorcomponentlayout">Calculator Component Layout</h2>
-
-<p>In terms of React components, create the following tree of components:</p>
-
-<ul>
-<li>Calculator - the top-level component
-
-
-<ul>
-<li>Display</li>
-
-<li>Stack</li>
-
-<li>Input Line</li>
-
-<li>Keyboard</li>
-
-<li>Collection of buttons</li>
-
-<li>The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the backend API for expression evaluation.</li></ul>
-</li>
-</ul>
-
-<p>To keep things manageable, I stick with one CSS file for the entire calculator (instead of one per component).</p>
-
-<h2 id="gettingstarted">Getting Started</h2>
-
-<p>I alternated (somewhat randomly) between macOS and Windows in the development of this project.  On both platforms I utilized VS Code as the editor.  However, VS Code is not required to build, test and run the project.</p>
-
-<h3 id="softwareprerequsites">Software Prerequsites</h3>
-
-<p>todo</p>
-
-<p>todo</p>
-
-<h2 id="buildandtest">Build and Test</h2>
-
-<p>Clone the repo with the following command:</p>
-
-<pre><code>git clone http://todo.com
+        <pre><code>git clone https://mtharris.visualstudio.com/DefaultCollection/rpn-calc/_git/rpn-calc
 </code></pre>
 
-<p>To build the project, execute the following from the project root.</p>
+        <p>To build the project, execute the following from the project root.</p>
 
-<pre><code>dotnet build
+        <pre><code>dotnet build
 </code></pre>
 
-<p>To test the ASP.NET Core portion of the project, execute the following in the ./tests subdirectory.</p>
+        <p>To test the ASP.NET Core portion of the project, execute the following in the ./tests subdirectory.</p>
 
-<pre><code>dotnet test
+        <pre><code>dotnet test
 </code></pre>
 
-<p>Finally, to test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.</p>
+        <p>Finally, to test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.</p>
 
-<pre><code>npm test
+        <pre><code>npm test
 </code></pre>
 
-<p>Execute the command below to run the application from the command line and browse to <strong><a href="https://localhost:5001">https://localhost:5001</a></strong>.</p>
+        <p>Execute the command below to run the application from the command line and browse to <strong><a href="https://localhost:5001">https://localhost:5001</a></strong>.</p>
 
-<pre><code>dotnet run
+        <pre><code>dotnet run
 </code></pre>
 
-<p>Note that the <strong>dotnet run</strong> command requires that the environment variable <strong>ASPNETCORE_ENVIRONMENT</strong> be set to <strong>Development</strong>.</p>
+        <p>Some things to keep in mind:</p>
 
-<p>Also, if using VS Code, you should be able to just press <strong>ctrl+F5</strong> to run the application as <strong>~/.vscode/launch.json</strong> is part of the project.</p>
+        <ul>
+          <li>The <strong>dotnet run</strong> command requires that the environment variable <strong>ASPNETCORE_ENVIRONMENT</strong> be set to <strong>Development</strong>.</li>
 
-<h3 id="commandlinetesting">Command Line Testing</h3>
+          <li>If using VS Code, you should be able to just press <strong>ctrl+F5</strong> to run the application as <strong>~/.vscode/launch.json</strong> is part of the project.</li>
 
-<p>To test from the command line, try some of the following commands.  (Expressions evaluate to 7 and -96.007000 respectively.)</p>
+          <li>The calculator app requires a TLS connection with the client (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed in order to run locally.  See <strong>dotnet dev-certs https --help</strong> for more information.</li>
+        </ul>
 
-<p>Curl</p>
+        <h3 id="commandlinetesting">Command Line Testing</h3>
 
-<pre><code>curl https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
+        <p>To test from the command line, try some of the following commands.  (Expressions evaluate to 7 and -96.007000 respectively.)</p>
+
+        <p>Curl</p>
+
+        <pre><code>curl https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
 </code></pre>
 
-<p>PowerShell</p>
+        <p>PowerShell</p>
 
-<pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
+        <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/5/2/a
 </code></pre>
 
-<p>Curl</p>
+        <p>Curl</p>
 
-<pre><code>curl https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
+        <pre><code>curl https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
 </code></pre>
 
-<p>PowerShell</p>
+        <p>PowerShell</p>
 
-<pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
+        <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
 </code></pre>
       </div>
     );
