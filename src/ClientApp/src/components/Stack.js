@@ -59,14 +59,8 @@ export class Stack extends Component {
     this.setState({ stack: this.state.stack });
   }
 
-  componentDidUpdate(prevProps) {
-    //if (prevProps.stack.length < this.props.stack.length)
-    //  this.stayScrolled(); // Or: this.scrollBottom
-  }
-
-  storeScrolledControllers = ({ stayScrolled, scrollBottom }) => {
+  storeScrolledControllers = ({ stayScrolled }) => {
     this.stayScrolled = stayScrolled;
-    this.scrollBottom = scrollBottom;
   }
 
   render() {
