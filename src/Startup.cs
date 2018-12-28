@@ -41,6 +41,15 @@ namespace RpnCalc
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            
+            // Add headers to disable caching
+            app.Use((context, next) =>
+            {
+                context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+                context.Response.Headers["Pragma"] = "no-cache";
+                context.Response.Headers["Expires"] = "0";
+                return next.Invoke();
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
