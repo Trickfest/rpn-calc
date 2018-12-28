@@ -92,10 +92,10 @@ Software stack at time of this writing:
 
 * Windows
   * .NET Core - 2.2.100
-  * Npm - 6.4.1
+  * Npm - 6.4.1 (installed via node 11.3.0)
 * MacOS
   * .NET Core - 2.2.100
-  * Npm - TODO
+  * Npm - TODO (installed via node TODO)
 
 ## Build and Test
 
@@ -123,7 +123,7 @@ Some things to keep in mind:
 
 * The __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
 * If using VS Code, you should be able to just press __ctrl+F5__ to run the application as __~/.vscode/launch.json__ is part of the project.
-* The calculator app requires a TLS connection with the client (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed in order to run locally.  See __dotnet dev-certs https --help__ for more information.
+* The calculator app requires a TLS connection with the client (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See __dotnet dev-certs https --help__ for more information.
 
 ### Command Line Testing
 
@@ -144,3 +144,13 @@ Curl
 PowerShell
 
     Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
+
+For help text, invoke the following:
+
+Curl
+
+    curl https://rpn-calc.azurewebsites.net/api/rpneval
+
+PowerShell
+
+    Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval

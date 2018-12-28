@@ -10,7 +10,7 @@ namespace RpnCalc.Controllers
     [ApiController]
     public class RpnEvalController : ControllerBase
     {
-        public const string HELP_TEXT = "this is help text";
+        public const string HELP_TEXT = "RpnEval: try https://[host:port]/api/rpneval/3/5/2/a/m (use a, s, m, d in place of +, -, *, /)";
 
         public const string SUCCESS_TEXT = "success";
 
@@ -20,7 +20,7 @@ namespace RpnCalc.Controllers
 
         public const string DIVIDE_BY_ZERO_TEXT = "divide by zero";
 
-        public const string INCOMPLETE_EXPRESSION_TEXT = "incomplete expression - more than one number on stack";
+        public const string INCOMPLETE_EXPRESSION_TEXT = "incomplete expression - more than one number remaining on stack";
 
         // GET api/rpneval/5/6/d
         [HttpGet("{*opStr}")]
