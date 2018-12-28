@@ -7,7 +7,7 @@ export class Home extends Component {
     return (
       <div>
         <h1 id="rpncalc">RPN-CALC</h1>
-        <i>Version: 20181228.3</i>
+        <i>Version: 20181228.4</i>
 
         <h2 id="introduction">Introduction</h2>
 
@@ -19,7 +19,7 @@ development (TDD) and set up a Azure DevOps CI/CD pipeline that deploys to Azure
         <ul>
           <li>The calculator can be used by a human via a web browser.</li>
 
-          <li>The calculator can be used by a client application via a RESTful API (over HTTP/HTTPS).</li>
+          <li>The calculator can be used by a client application such as <strong>curl</strong> via a RESTful API (over HTTP/HTTPS).</li>
 
           <li>When used interactively through the UI, the application displays the contents of the stack as the user makes each entry.</li>
 
@@ -47,7 +47,7 @@ It's OK if the technology selection doesn't make total sense or is overkill for 
         On the opposite end of the spectrum, using a full-blow IDE such as Visual Studio on Windows
 should be an option as well.</p>
 
-        <p>Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), etc.</p>
+        <p>Deployment options should be equally as flexible: Windows/macOS/Linux, Docker (or not), etc.</p>
 
         <h2 id="technologystackandimplementationnotes">Technology Stack and Implementation Notes</h2>
 
@@ -57,29 +57,29 @@ should be an option as well.</p>
             <ul>
               <li>Implement the API using .NET Core/C#.</li>
 
-              <li>ASP.NET Core is used as the web framework for implementing the API.</li>
+              <li>ASP.NET Core is used as the web framework for implementing the API and serving the UI.</li>
 
               <li>Unit testing support provided by xUnit</li></ul></li>
 
-          <li><p>Implement the front-end using React, which addresses the "learn something new" requirement.</p></li>
+          <li><p>Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React.  <em>Be kind.</em></p></li>
 
           <li><p>Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.</p></li>
 
-          <li><p>To keep things simple, rpn-calc is implemented as a single project that contains both the front-end and the back-end.</p>
+          <li><p>To keep things simple, rpn-calc is implemented as a single project that contains both the front-end (React) and the back-end (.NET Core).</p>
 
             <ul>
               <li>The source code is housed in a single Git repo.</li>
 
               <li>The application is built and deployed as a single unit.</li></ul></li>
 
-          <li><p>Not surprisingly, use Azure DevOps Pipelines for CI/CD support.</p>
+          <li><p>Use Azure DevOps Pipelines for CI/CD support.</p>
 
             <ul>
               <li>For starters, keep it simple: automatically build and deploy to an Azure Web App when the repo's master branch is changed.</li>
 
               <li>Later on, explore other options such as:</li>
 
-              <li>Dockerizing the application and deploying the container to (say) an AKS cluster, which certainly checks the technology overkill box!</li>
+              <li>Dockerizing the application and deploying the container to (say) an AKS cluster.</li>
 
               <li>Deploying initially to a "UAT" environment and then later on deploying to "PROD" when a manual approval step is performed.</li>
 
@@ -94,9 +94,9 @@ should be an option as well.</p>
 
               <li>If after truncation, the number of digits exceeds nine, display an overflow error.</li></ul></li>
 
-          <li><p>I am not an experienced user of "real" RPN calculators, so I am not sure what the correct behavior is with regards to an empty stack condition.  For my purposes, a pop of my calculator's stack returns a zero if the stack is empty.</p></li>
+          <li><p>I am not an experienced user of "real" RPN calculators, so I am not sure what the correct behavior is with regards to an empty stack condition.  For my purposes, popping my calculator's stack returns a zero if the stack is empty.</p></li>
 
-          <li><p>On the other hand, the RPN expression evaluation API is unforgiving.  If there are insufficient values on the stack to perform an operation, an error is returned.  Also, if the stack contains more than a single value after an expression is fully evaluated, that is treated as an error condition.</p></li>
+          <li><p>On the other hand, the RPN expression evaluation API is unforgiving.  If there are insufficient values on the stack to perform an operation, an error is returned.  And if the stack contains more than a single value after an expression is fully evaluated, that is too treated as an error condition.</p></li>
 
           <li><p>Also in the API, in order to avoid conflicts with URL interpretation, the letters <strong>a</strong>, <strong>s</strong>, <strong>m</strong> and <strong>d</strong> are used as substitutes for operations <strong>+</strong>, <strong>-</strong>, <strong>*</strong> and <strong>/</strong> respectively.</p></li>
         </ul>
@@ -141,7 +141,7 @@ should be an option as well.</p>
 <ul>
               <li>.NET Core - 2.2.100</li>
 
-              <li>Npm - 6.4.1</li></ul>
+              <li>Npm - 6.4.1 (installed via node 11.3.0)</li></ul>
           </li>
 
           <li>MacOS
@@ -150,7 +150,7 @@ should be an option as well.</p>
 <ul>
               <li>.NET Core - 2.2.100</li>
 
-              <li>Npm - TODO</li></ul>
+              <li>Npm - TODO (installed via node TODO)</li></ul>
           </li>
         </ul>
 
@@ -176,7 +176,7 @@ should be an option as well.</p>
         <pre><code>npm test
 </code></pre>
 
-        <p>Execute the command below to run the application from the command line and browse to <strong><a href="https://localhost:5001">https://localhost:5001</a></strong>.</p>
+        <p>Execute the command below to run the application from the command line.  After the application initializes, browse to <strong><a href="https://localhost:5001">https://localhost:5001</a></strong>.</p>
 
         <pre><code>dotnet run
 </code></pre>
@@ -188,7 +188,7 @@ should be an option as well.</p>
 
           <li>If using VS Code, you should be able to just press <strong>ctrl+F5</strong> to run the application as <strong>~/.vscode/launch.json</strong> is part of the project.</li>
 
-          <li>The calculator app requires a TLS connection with the client (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed in order to run locally.  See <strong>dotnet dev-certs https --help</strong> for more information.</li>
+          <li>The calculator app requires a TLS connection with the client application (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See <strong>dotnet dev-certs https --help</strong> for more information.</li>
         </ul>
 
         <h3 id="commandlinetesting">Command Line Testing</h3>
@@ -213,6 +213,18 @@ should be an option as well.</p>
         <p>PowerShell</p>
 
         <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval/-10.4/-3.7/a/4/s/2/m/04.00/2/d/d/2/d/5.0/0002.000/m/m/00.007/s/-00005.50000/a
+</code></pre>
+
+        <p>For help text, invoke the following:</p>
+
+        <p>Curl</p>
+
+        <pre><code>curl https://rpn-calc.azurewebsites.net/api/rpneval
+</code></pre>
+
+        <p>PowerShell</p>
+
+        <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval
 </code></pre>
       </div>
     );

@@ -8,7 +8,7 @@ development (TDD) and set up a Azure DevOps CI/CD pipeline that deploys to Azure
 ## General Application Requirements
 
 * The calculator can be used by a human via a web browser.
-* The calculator can be used by a client application via a RESTful API (over HTTP/HTTPS).
+* The calculator can be used by a client application such as __curl__ via a RESTful API (over HTTP/HTTPS).
 * When used interactively through the UI, the application displays the contents of the stack as the user makes each entry.
 * When used by a client application, the application accepts a list of inputs and returns a single result.
 
@@ -33,27 +33,27 @@ For example, Vim and the command line running on Ubuntu should be a supported de
 On the opposite end of the spectrum, using a full-blow IDE such as Visual Studio on Windows
 should be an option as well.
 
-Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), etc.
+Deployment options should be equally as flexible: Windows/macOS/Linux, Docker (or not), etc.
 
 ## Technology Stack and Implementation Notes
 
 * In order to check the cross-platform box
   * Implement the API using .NET Core/C#.
-  * ASP.NET Core is used as the web framework for implementing the API.
+  * ASP.NET Core is used as the web framework for implementing the API and serving the UI.
   * Unit testing support provided by xUnit
 
-* Implement the front-end using React, which addresses the "learn something new" requirement.
+* Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React.  _Be kind._
 
 * Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.
 
-* To keep things simple, rpn-calc is implemented as a single project that contains both the front-end and the back-end.
+* To keep things simple, rpn-calc is implemented as a single project that contains both the front-end (React) and the back-end (.NET Core).
   * The source code is housed in a single Git repo.
   * The application is built and deployed as a single unit.
   
-* Not surprisingly, use Azure DevOps Pipelines for CI/CD support.
+* Use Azure DevOps Pipelines for CI/CD support.
   * For starters, keep it simple: automatically build and deploy to an Azure Web App when the repo's master branch is changed.
   * Later on, explore other options such as:
-    * Dockerizing the application and deploying the container to (say) an AKS cluster, which certainly checks the technology overkill box!
+    * Dockerizing the application and deploying the container to (say) an AKS cluster.
     * Deploying initially to a "UAT" environment and then later on deploying to "PROD" when a manual approval step is performed.
     * Blue-Green deployments using Azure Traffic Manager.
 
@@ -62,9 +62,9 @@ Deployment should be equally as flexible: Windows/macOS/Linux, Docker (or not), 
   * If necessary, truncate digits to right of the decimal point in order to fit within the nine digit limit.
   * If after truncation, the number of digits exceeds nine, display an overflow error.
 
-* I am not an experienced user of "real" RPN calculators, so I am not sure what the correct behavior is with regards to an empty stack condition.  For my purposes, a pop of my calculator's stack returns a zero if the stack is empty.
+* I am not an experienced user of "real" RPN calculators, so I am not sure what the correct behavior is with regards to an empty stack condition.  For my purposes, popping my calculator's stack returns a zero if the stack is empty.
 
-* On the other hand, the RPN expression evaluation API is unforgiving.  If there are insufficient values on the stack to perform an operation, an error is returned.  Also, if the stack contains more than a single value after an expression is fully evaluated, that is treated as an error condition.
+* On the other hand, the RPN expression evaluation API is unforgiving.  If there are insufficient values on the stack to perform an operation, an error is returned.  And if the stack contains more than a single value after an expression is fully evaluated, that is too treated as an error condition.
 
 * Also in the API, in order to avoid conflicts with URL interpretation, the letters __a__, __s__, __m__ and __d__ are used as substitutes for operations __+__, __-__, __*__ and __/__ respectively.
 
@@ -115,7 +115,7 @@ Finally, to test the React-based components execute the following npm command in
 
     npm test
 
-Execute the command below to run the application from the command line and browse to __<https://localhost:5001>__.
+Execute the command below to run the application from the command line.  After the application initializes, browse to __<https://localhost:5001>__.
 
     dotnet run
 
@@ -123,7 +123,7 @@ Some things to keep in mind:
 
 * The __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
 * If using VS Code, you should be able to just press __ctrl+F5__ to run the application as __~/.vscode/launch.json__ is part of the project.
-* The calculator app requires a TLS connection with the client (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See __dotnet dev-certs https --help__ for more information.
+* The calculator app requires a TLS connection with the client application (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See __dotnet dev-certs https --help__ for more information.
 
 ### Command Line Testing
 
