@@ -11,6 +11,10 @@ export class Stack extends Component {
     var fillerstackelement = { text: " " };
 
     var stack = [];
+
+    // insert some filler rows in the stack to ensure
+    // that the first "real" element is positioned
+    // at the bottom of the list box
     for (var i = 0; i < 15; i++) {
       stack.push(fillerstackelement);
     }

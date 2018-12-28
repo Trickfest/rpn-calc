@@ -34,13 +34,14 @@ namespace RpnCalc.Controllers
             string[] tokens = opStr.Split('/');
 
             Stack<decimal> stack = new Stack<decimal>();
-            decimal number;
+            
+            decimal numberToken;
 
             foreach (string token in tokens)
             {
-                if (decimal.TryParse(token, out number)) // is it a number? if so push on stack
+                if (decimal.TryParse(token, out numberToken)) // is it a number? if so push on stack
                 {
-                    stack.Push(number);
+                    stack.Push(numberToken);
                 }
                 else
                 {

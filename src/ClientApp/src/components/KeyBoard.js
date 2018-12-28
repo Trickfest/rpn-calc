@@ -77,16 +77,16 @@ export class KeyBoard extends Component {
         this.handleInput("DEL");
         break;
 
-      default: // ignore anything else - default is specified to suppress warning
+      default: // ignore anything else - default is specified to suppress compilation warning
         break;
     }
   }
 
   handleKeydown(event) {
-    if (event.keyCode === 27) {
-      this.handleInput("CE"); // clear out inputline
+    if (event.keyCode === 27) { // ESC - clear out inputline
+      this.handleInput("CE");
     }
-    else if (event.keyCode === 46) {
+    else if (event.keyCode === 46) { // DEL
       this.handleInput("DEL");
     }
   }
@@ -187,6 +187,7 @@ export class KeyBoard extends Component {
         else {
           inputLine = "-" + inputLine;
         }
+
         this.setInputLine(inputLine);
         break;
 
@@ -200,7 +201,7 @@ export class KeyBoard extends Component {
         break;
 
       default:
-        alert("unhandled input"); // bug if this code is reached
+        alert("unhandled input"); // serious bug if this code is reached
         break;
     }
   }
@@ -209,7 +210,8 @@ export class KeyBoard extends Component {
     var color = document.getElementById(id).style.color;
 
     document.getElementById(id).style.backgroundColor = this.KEY_FLASH_COLOR;
-    
+
+    // after a tenth of a second, set element back to its original color
     setTimeout(function () {
       document.getElementById(id).style.backgroundColor = color;
     }, 100);
@@ -238,7 +240,7 @@ export class KeyBoard extends Component {
         break;
 
       default:
-        alert("invalid operator"); // bug if this code is reached
+        alert("invalid operator"); // serious bug if this code is reached
         break;
     }
 
@@ -249,12 +251,13 @@ export class KeyBoard extends Component {
           this.setInputLine(this.ERROR_TEXT);
         }
         else {
-          var limitedNumber = this.limitNumber(data.answer);
-          if (this.strDigits(limitedNumber) > this.MAX_DIGITS) {
+          var constrainedNumber = this.constrainNumber(data.answer);
+
+          if (this.strDigits(constrainedNumber) > this.MAX_DIGITS) {
             this.setInputLine(this.OVERFLOW_TEXT);
           }
           else {
-            this.setInputLine(limitedNumber);
+            this.setInputLine(constrainedNumber);
           }
         }
       });
@@ -311,13 +314,14 @@ export class KeyBoard extends Component {
     return result;
   }
 
-  // If possible, limit the precision of the number in order to keep number of digits < MAX_DIGITS
+  // If necessary and possible, limit the precision of the number in order to keep number of digits < MAX_DIGITS
   // If necessary, truncate digits to right of the decimal point in order to fit within the MAX_DIGITS limit
-  // Also, delete any leading or trailing zeroes
+  // Delete any leading or trailing zeroes
+  // Delete trailing decimal point
   // 
   // Note: number may still exceed MAX_DIGITS after limiting precision - that is expected behavior and will
   // be handled elsewhere
-  limitNumber(s) {
+  constrainNumber(s) {
     // if string contains a decimal, delete trailing zeroes
     if (s.indexOf(".") !== -1) {
       s = s.replace(/0+$/, '');
@@ -347,8 +351,9 @@ export class KeyBoard extends Component {
       s = s.replace('0', '');
     }
 
+    // if number has decimal, then trim any trailing zeroes
     if (s.indexOf(".") !== -1) {
-      s = s.replace(/0+$/, ''); // trim any trailing zeroes
+      s = s.replace(/0+$/, '');
     }
 
     // finally, if number ends in decimal, trim it
