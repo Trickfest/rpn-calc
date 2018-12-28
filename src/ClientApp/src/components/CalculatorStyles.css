@@ -1,6 +1,7 @@
 .calculator {
     border-style: solid;
     width: 20em;
+    margin-top: 5em;
 }
 
 .inputline {
