@@ -93,9 +93,9 @@ Software stack at time of this writing:
 * Windows
   * .NET Core - 2.2.100
   * Npm - 6.4.1 (installed via node 11.3.0)
-* MacOS
-  * .NET Core - 2.2.100
-  * Npm - TODO (installed via node TODO)
+* macOS
+  * .NET Core - 2.2.101
+  * Npm - 6.5.0 (installed via node 11.6.0 using Homebrew)
 
 ## Build and Test
 
