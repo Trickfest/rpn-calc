@@ -42,7 +42,7 @@ Deployment options should be equally as flexible: Windows/macOS/Linux, Docker (o
   * ASP.NET Core is used as the web framework for implementing the API and serving the UI.
   * Unit testing support provided by xUnit
 
-* Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React.  _Be kind._
+* Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React and admittedly the implementation mostly just evolved as I learned the basics of React development.  _Be gentle.  I know that there is ample room for improvement._
 
 * Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.
 
@@ -111,7 +111,7 @@ To test the ASP.NET Core portion of the project, execute the following in the ./
 
     dotnet test
 
-Finally, to test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.
+To test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.
 
     npm test
 

@@ -66,7 +66,7 @@ should be an option as well.</p>
 
                                                         <li>Unit testing support provided by xUnit</li></ul></li>
 
-                                        <li><p>Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React.  <em>Be kind.</em></p></li>
+                                        <li><p>Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React and admittedly the implementation mostly just evolved as I learned the basics of React development.  <em>Be gentle.  I know that there is ample room for improvement.</em></p></li>
 
                                         <li><p>Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.</p></li>
 
@@ -176,7 +176,7 @@ should be an option as well.</p>
                                 <pre><code>dotnet test
 </code></pre>
 
-                                <p>Finally, to test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.</p>
+                                <p>To test the React-based components execute the following npm command in the ./src/ClientApp subdirectory.</p>
 
                                 <pre><code>npm test
 </code></pre>
