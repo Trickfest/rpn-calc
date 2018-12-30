@@ -8,7 +8,7 @@ export class Home extends Component {
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
                                 
-                                <p><i>Version: 20181229.1</i></p>
+                                <p><i>Version: 20181230.1</i></p>
                                 
                                 <p><i>To begin, try the following expression:</i></p>
                                 
