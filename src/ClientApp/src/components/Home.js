@@ -7,11 +7,11 @@ export class Home extends Component {
                 return (
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
-                                
-                                <p><i>Version: 20181230.1</i></p>
-                                
+
+                                <p><i>Version: 20181231.1</i></p>
+
                                 <p><i>To begin, try the following expression:</i></p>
-                                
+
                                 <pre><code>3 ENT 2 ENT 1 + *</code></pre>
 
                                 <h2 id="introduction">Introduction</h2>
@@ -112,8 +112,8 @@ should be an option as well.</p>
 
                                 <ul>
                                         <li>Calculator - the top-level component
-                                        
-                                        
+
+
 <ul>
                                                         <li>Display</li>
 
@@ -141,8 +141,8 @@ should be an option as well.</p>
 
                                 <ul>
                                         <li>Windows
-                                        
-                                        
+
+
 <ul>
                                                         <li>.NET Core - 2.2.100</li>
 
@@ -150,8 +150,8 @@ should be an option as well.</p>
                                         </li>
 
                                         <li>macOS
-                                        
-                                        
+
+
 <ul>
                                                         <li>.NET Core - 2.2.101</li>
 
@@ -231,6 +231,8 @@ should be an option as well.</p>
 
                                 <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval
 </code></pre>
+
+                                <p>There is also a minimal Swagger UI that can be found at <strong><a href="https://rpn-calc.azurewebsites.net/swagger">https://rpn-calc.azurewebsites.net/swagger</a></strong></p>
                         </div>
                 );
         }

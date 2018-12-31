@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RpnCalc.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class RpnEvalController : ControllerBase
@@ -24,71 +25,85 @@ namespace RpnCalc.Controllers
 
         // GET api/rpneval/5/6/d
         [HttpGet("{*opStr}")]
+        [ProducesResponseType(200)]
         public ActionResult<RpnEvalResult> Get(string opStr)
         {
-            if (string.IsNullOrWhiteSpace(opStr))
+            // since we're promising to return a 200, wrap everything
+            // in a try/catch just in case something goes wrong
+            try
             {
-                return new RpnEvalResult() { message = HELP_TEXT, answer = null };
-            }
-
-            string[] tokens = opStr.Split('/');
-
-            Stack<decimal> stack = new Stack<decimal>();
-            
-            decimal numberToken;
-
-            foreach (string token in tokens)
-            {
-                if (decimal.TryParse(token, out numberToken)) // is it a number? if so push on stack
+                if (string.IsNullOrWhiteSpace(opStr))
                 {
-                    stack.Push(numberToken);
+                    return new RpnEvalResult() { message = HELP_TEXT, answer = null };
                 }
-                else
+
+                // the swagger ui sends excaped urls (e.g. https://localhost:5001/api/RpnEval/3%2F4%2Fa)
+                // so unescape here just in case
+                opStr = Uri.UnescapeDataString(opStr);
+
+                string[] tokens = opStr.Split('/');
+
+                Stack<decimal> stack = new Stack<decimal>();
+
+                decimal numberToken;
+
+                foreach (string token in tokens)
                 {
-                    // if there are not two items on the stack, then expression is invalid
-                    if (stack.Count < 2)
+                    if (decimal.TryParse(token, out numberToken)) // is it a number? if so push on stack
                     {
-                        return new RpnEvalResult() { message = INVALID_EXPRESSION_TEXT, answer = null };
+                        stack.Push(numberToken);
                     }
-
-                    decimal op2 = stack.Pop();
-                    decimal op1 = stack.Pop();
-
-                    switch (token)
+                    else
                     {
-                        case "a":
-                            stack.Push(op1 + op2);
-                            break;
+                        // if there are not two items on the stack, then expression is invalid
+                        if (stack.Count < 2)
+                        {
+                            return new RpnEvalResult() { message = INVALID_EXPRESSION_TEXT, answer = null };
+                        }
 
-                        case "s":
-                            stack.Push(op1 - op2);
-                            break;
+                        decimal op2 = stack.Pop();
+                        decimal op1 = stack.Pop();
 
-                        case "m":
-                            stack.Push(op1 * op2);
-                            break;
+                        switch (token)
+                        {
+                            case "a":
+                                stack.Push(op1 + op2);
+                                break;
 
-                        case "d":
-                            if (op2 == decimal.Zero)
-                            {
-                                return new RpnEvalResult() { message = DIVIDE_BY_ZERO_TEXT, answer = null };
-                            }
-                            stack.Push(op1 / op2);
-                            break;
+                            case "s":
+                                stack.Push(op1 - op2);
+                                break;
 
-                        default:
-                            return new RpnEvalResult() { message = INVALID_OPERATOR_TEXT, answer = null };
+                            case "m":
+                                stack.Push(op1 * op2);
+                                break;
+
+                            case "d":
+                                if (op2 == decimal.Zero)
+                                {
+                                    return new RpnEvalResult() { message = DIVIDE_BY_ZERO_TEXT, answer = null };
+                                }
+                                stack.Push(op1 / op2);
+                                break;
+
+                            default:
+                                return new RpnEvalResult() { message = INVALID_OPERATOR_TEXT, answer = null };
+                        }
                     }
                 }
-            }
 
-            // more than a single result on the stack - treat as error
-            if (stack.Count > 1)
+                // more than a single result on the stack - treat as error
+                if (stack.Count > 1)
+                {
+                    return new RpnEvalResult() { message = INCOMPLETE_EXPRESSION_TEXT, answer = null };
+                }
+
+                return new RpnEvalResult() { message = SUCCESS_TEXT, answer = stack.Pop().ToString() };
+            }
+            catch (Exception)
             {
-                return new RpnEvalResult() { message = INCOMPLETE_EXPRESSION_TEXT, answer = null };
+                return new RpnEvalResult() { message = INVALID_EXPRESSION_TEXT, answer = null };
             }
-
-            return new RpnEvalResult() { message = SUCCESS_TEXT, answer = stack.Pop().ToString() };
         }
     }
 
