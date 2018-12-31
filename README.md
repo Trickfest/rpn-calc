@@ -154,5 +154,3 @@ Curl
 PowerShell
 
     Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval
-
-There is also a minimal Swagger UI located at __<https://rpn-calc.azurewebsites.net/api/docs>__
