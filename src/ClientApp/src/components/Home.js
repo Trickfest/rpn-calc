@@ -8,7 +8,7 @@ export class Home extends Component {
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
 
-                                <p><i>Version: 20181231.2</i></p>
+                                <p><i>Version: 20181231.3</i></p>
 
                                 <p><i>To begin, try the following expression:</i></p>
 
@@ -232,7 +232,7 @@ should be an option as well.</p>
                                 <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval
 </code></pre>
 
-                                <p>There is also a minimal Swagger UI that can be found at <strong><a href="https://rpn-calc.azurewebsites.net/api/docs">https://rpn-calc.azurewebsites.net/swagger</a></strong></p>
+                                <p>There is also a minimal Swagger UI located at <strong><a href="https://rpn-calc.azurewebsites.net/api/docs">https://rpn-calc.azurewebsites.net/swagger</a></strong></p>
                         </div>
                 );
         }
