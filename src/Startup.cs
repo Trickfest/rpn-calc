@@ -62,6 +62,7 @@ namespace RpnCalc
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPN-CALC API");
+                c.RoutePrefix = "api/docs";
             });
 
             app.UseHttpsRedirection();
