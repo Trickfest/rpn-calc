@@ -91,7 +91,7 @@ I alternated (somewhat randomly) between macOS and Windows in the development of
 Software stack at time of this writing:
 
 * Windows
-  * .NET Core - 2.2.100
+  * .NET Core - 2.2.102
   * Npm - 6.4.1 (installed via node 11.3.0)
 * macOS
   * .NET Core - 2.2.101
@@ -115,13 +115,13 @@ To test the React-based components execute the following npm command in the ./sr
 
     npm test
 
-Execute the command below to run the application from the command line.  After the application initializes, browse to __<https://localhost:5001>__.
+From the ./src directory, execute the command below to run the application from the command line.  (Be sure to define the __ASPNETCORE_ENVIRONMENT__ environment variable as __Development__.) After the application initializes, browse to __<https://localhost:5001>__.
 
     dotnet run
 
 Some things to keep in mind:
 
-* The __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
+* As stated earlier, the __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
 * If using VS Code, you should be able to just press __ctrl+F5__ to run the application as __~/.vscode/launch.json__ is part of the project.
 * The calculator app requires a TLS connection with the client application (browser, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See __dotnet dev-certs https --help__ for more information.
 

@@ -7,9 +7,8 @@ export class Home extends Component {
                 return (
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
-
-                                <p><i>Version: 20190218.1</i></p>
-
+                                <p><i>Version: 20190218.4</i></p>
+                                
                                 <p><i>To begin, try the following expression:</i></p>
 
                                 <pre><code>3 ENT 2 ENT 1 + *</code></pre>
@@ -163,7 +162,7 @@ should be an option as well.</p>
 
                                 <p>Clone the repo with the following command:</p>
 
-                                <pre><code>git clone https://mtharris.visualstudio.com/DefaultCollection/rpn-calc/_git/rpn-calc
+                                <pre><code>git clone https://github.com/Trickfest/rpn-calc.git
 </code></pre>
 
                                 <p>To build the project, execute the following from the project root.</p>
@@ -181,7 +180,7 @@ should be an option as well.</p>
                                 <pre><code>npm test
 </code></pre>
 
-                                <p>Execute the command below to run the application from the command line.  After the application initializes, browse to <strong><a href="https://localhost:5001">https://localhost:5001</a></strong>.</p>
+                                <p>From the ./src directory, execute the command below to run the application from the command line.  (Be sure to define the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable as <strong>Development</strong>.) After the application initializes, browse to <strong><a href="https://localhost:5001">https://localhost:5001</a></strong>.</p>
 
                                 <pre><code>dotnet run
 </code></pre>
@@ -189,7 +188,7 @@ should be an option as well.</p>
                                 <p>Some things to keep in mind:</p>
 
                                 <ul>
-                                        <li>The <strong>dotnet run</strong> command requires that the environment variable <strong>ASPNETCORE_ENVIRONMENT</strong> be set to <strong>Development</strong>.</li>
+                                        <li>As stated earlier, the <strong>dotnet run</strong> command requires that the environment variable <strong>ASPNETCORE_ENVIRONMENT</strong> be set to <strong>Development</strong>.</li>
 
                                         <li>If using VS Code, you should be able to just press <strong>ctrl+F5</strong> to run the application as <strong>~/.vscode/launch.json</strong> is part of the project.</li>
 
@@ -230,7 +229,7 @@ should be an option as well.</p>
                                 <p>PowerShell</p>
 
                                 <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval
-</code></pre>                                
+</code></pre>
                         </div>
                 );
         }

@@ -2,6 +2,7 @@
     "dotnet-test-explorer.testProjectPath": "tests/*.csproj",
     "cSpell.words": [
         "aspnetcore",
+        "browserslist",
         "buildandtest",
         "calculatorcomponentlayout",
         "commandlinetesting",
