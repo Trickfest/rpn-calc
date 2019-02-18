@@ -1,3 +1,24 @@
 {
-    "dotnet-test-explorer.testProjectPath": "tests/*.csproj"
+    "dotnet-test-explorer.testProjectPath": "tests/*.csproj",
+    "cSpell.words": [
+        "aspnetcore",
+        "buildandtest",
+        "calculatorcomponentlayout",
+        "commandlinetesting",
+        "dockerizing",
+        "exploreasmuchofazuredevopsaspossible",
+        "fillerstackelement",
+        "generalapplicationrequirements",
+        "gettingstarted",
+        "learnsomethingnew",
+        "otherprojectconsiderations",
+        "repo",
+        "repo's",
+        "res",
+        "rpncalc",
+        "softwareprerequisites",
+        "stackelement",
+        "technologystackandimplementationnotes",
+        "tful"
+    ]
 }

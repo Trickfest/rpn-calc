@@ -8,7 +8,7 @@ export class Home extends Component {
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
 
-                                <p><i>Version: 20181231.4</i></p>
+                                <p><i>Version: 20190218.1</i></p>
 
                                 <p><i>To begin, try the following expression:</i></p>
 
@@ -47,7 +47,7 @@ It's OK if the technology selection doesn't make total sense or is overkill for 
                                 <h3 id="crossplatformforbothdevelopmentanddeployment">Cross platform for both development and deployment</h3>
 
                                 <p>Again, mostly for the fun of it, the project should be as flexible as possible
-                                with reqards to development and deployment environments.
+                                with regards to development and deployment environments.
                                 For example, Vim and the command line running on Ubuntu should be a supported developer setup.
                                 On the opposite end of the spectrum, using a full-blow IDE such as Visual Studio on Windows
 should be an option as well.</p>
@@ -68,7 +68,7 @@ should be an option as well.</p>
 
                                         <li><p>Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React and admittedly the implementation mostly just evolved as I learned the basics of React development.  <em>Be gentle.  I know that there is ample room for improvement.</em></p></li>
 
-                                        <li><p>Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.</p></li>
+                                        <li><p>Use Bootstrap for styling which compensates (in part) for my severe lack of CSS authoring skills.</p></li>
 
                                         <li><p>To keep things simple, rpn-calc is implemented as a single project that contains both the front-end (React) and the back-end (.NET Core).</p>
 
@@ -125,7 +125,7 @@ should be an option as well.</p>
 
                                                         <li>Collection of buttons</li>
 
-                                                        <li>The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the backend API for expression evaluation.</li></ul>
+                                                        <li>The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the back end API for expression evaluation.</li></ul>
                                         </li>
                                 </ul>
 
@@ -135,7 +135,7 @@ should be an option as well.</p>
 
                                 <p>I alternated (somewhat randomly) between macOS and Windows in the development of this project.  On both platforms I utilized VS Code as the editor.  However, VS Code is not required to build, test and run the project.</p>
 
-                                <h3 id="softwareprerequsites">Software Prerequsites</h3>
+                                <h3 id="softwareprerequisites">Software Prerequisites</h3>
 
                                 <p>Software stack at time of this writing:</p>
 
@@ -193,7 +193,7 @@ should be an option as well.</p>
 
                                         <li>If using VS Code, you should be able to just press <strong>ctrl+F5</strong> to run the application as <strong>~/.vscode/launch.json</strong> is part of the project.</li>
 
-                                        <li>The calculator app requires a TLS connection with the client application (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See <strong>dotnet dev-certs https --help</strong> for more information.</li>
+                                        <li>The calculator app requires a TLS connection with the client application (browser, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See <strong>dotnet dev-certs https --help</strong> for more information.</li>
                                 </ul>
 
                                 <h3 id="commandlinetesting">Command Line Testing</h3>

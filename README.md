@@ -28,7 +28,7 @@ It's OK if the technology selection doesn't make total sense or is overkill for 
 ### Cross platform for both development and deployment
 
 Again, mostly for the fun of it, the project should be as flexible as possible
-with reqards to development and deployment environments.
+with regards to development and deployment environments.
 For example, Vim and the command line running on Ubuntu should be a supported developer setup.
 On the opposite end of the spectrum, using a full-blow IDE such as Visual Studio on Windows
 should be an option as well.
@@ -44,7 +44,7 @@ Deployment options should be equally as flexible: Windows/macOS/Linux, Docker (o
 
 * Implement the front-end using React, which addresses the "learn something new" requirement.  Note that this is my first experience with React and admittedly the implementation mostly just evolved as I learned the basics of React development.  _Be gentle.  I know that there is ample room for improvement._
 
-* Use Bootstrap for stying which compensates (in part) for my severe lack of CSS authoring skills.
+* Use Bootstrap for styling which compensates (in part) for my severe lack of CSS authoring skills.
 
 * To keep things simple, rpn-calc is implemented as a single project that contains both the front-end (React) and the back-end (.NET Core).
   * The source code is housed in a single Git repo.
@@ -78,7 +78,7 @@ In terms of React components, create the following tree of components:
     * Input Line
   * Keyboard
     * Collection of buttons
-    * The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the backend API for expression evaluation.
+    * The keyboard is also the heart of the UI in that it drives the stack and input line.  It is also the keyboard control that calls the back end API for expression evaluation.
 
 To keep things manageable, I stick with one CSS file for the entire calculator (instead of one per component).
 
@@ -86,7 +86,7 @@ To keep things manageable, I stick with one CSS file for the entire calculator (
 
 I alternated (somewhat randomly) between macOS and Windows in the development of this project.  On both platforms I utilized VS Code as the editor.  However, VS Code is not required to build, test and run the project.
 
-### Software Prerequsites
+### Software Prerequisites
 
 Software stack at time of this writing:
 
@@ -101,7 +101,7 @@ Software stack at time of this writing:
 
 Clone the repo with the following command:
 
-    git clone https://mtharris.visualstudio.com/DefaultCollection/rpn-calc/_git/rpn-calc
+    git clone https://github.com/Trickfest/rpn-calc.git
 
 To build the project, execute the following from the project root.
 
@@ -123,7 +123,7 @@ Some things to keep in mind:
 
 * The __dotnet run__ command requires that the environment variable __ASPNETCORE_ENVIRONMENT__ be set to __Development__.
 * If using VS Code, you should be able to just press __ctrl+F5__ to run the application as __~/.vscode/launch.json__ is part of the project.
-* The calculator app requires a TLS connection with the client application (brower, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See __dotnet dev-certs https --help__ for more information.
+* The calculator app requires a TLS connection with the client application (browser, curl, PowerShell, etc), so you must have a trusted https development certificate installed on the client operating system in order to run locally.  See __dotnet dev-certs https --help__ for more information.
 
 ### Command Line Testing
 
