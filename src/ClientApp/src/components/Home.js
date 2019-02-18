@@ -7,7 +7,7 @@ export class Home extends Component {
                 return (
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
-                                <p><i>Version: 20190218.4</i></p>
+                                <p><i>Version: 20190218.5</i></p>
                                 
                                 <p><i>To begin, try the following expression:</i></p>
 
@@ -143,7 +143,7 @@ should be an option as well.</p>
 
 
 <ul>
-                                                        <li>.NET Core - 2.2.100</li>
+                                                        <li>.NET Core - 2.2.102</li>
 
                                                         <li>Npm - 6.4.1 (installed via node 11.3.0)</li></ul>
                                         </li>
