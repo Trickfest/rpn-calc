@@ -7,11 +7,7 @@ export class Home extends Component {
                 return (
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
-                                <p><i>Version: 20190218.5</i></p>
-                                
-                                <p><i>To begin, try the following expression:</i></p>
-
-                                <pre><code>3 ENT 2 ENT 1 + *</code></pre>
+                                <p><i>Version: 20190219.3</i></p>
 
                                 <h2 id="introduction">Introduction</h2>
 
@@ -111,8 +107,8 @@ should be an option as well.</p>
 
                                 <ul>
                                         <li>Calculator - the top-level component
-
-
+                                        
+                                        
 <ul>
                                                         <li>Display</li>
 
@@ -140,8 +136,8 @@ should be an option as well.</p>
 
                                 <ul>
                                         <li>Windows
-
-
+                                        
+                                        
 <ul>
                                                         <li>.NET Core - 2.2.102</li>
 
@@ -149,8 +145,8 @@ should be an option as well.</p>
                                         </li>
 
                                         <li>macOS
-
-
+                                        
+                                        
 <ul>
                                                         <li>.NET Core - 2.2.101</li>
 
@@ -229,6 +225,18 @@ should be an option as well.</p>
                                 <p>PowerShell</p>
 
                                 <pre><code>Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval
+</code></pre>
+
+                                <h3 id="dockersupport">Docker Support</h3>
+
+                                <p>To build a Linux-based Docker image, execute the following command from the ./src folder.</p>
+
+                                <pre><code>docker build -t rpn-calc  .
+</code></pre>
+
+                                <p>Then to run the container, invoke the command below and point your browser to <a href="http://localhost:9000/">http://localhost:9000/</a>.</p>
+
+                                <pre><code>docker run -d -e "ASPNETCORE_URLS=http://+:80"  -p 9000:80 --name rpn-calc rpn-calc
 </code></pre>
                         </div>
                 );

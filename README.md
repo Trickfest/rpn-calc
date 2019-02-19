@@ -154,3 +154,13 @@ Curl
 PowerShell
 
     Invoke-RestMethod https://rpn-calc.azurewebsites.net/api/rpneval
+
+### Docker Support
+
+To build a Linux-based Docker image, execute the following command from the ./src folder.
+
+    docker build -t rpn-calc  .
+
+Then to run the container, invoke the command below and point your browser to <http://localhost:9000/>.
+
+    docker run -d -e "ASPNETCORE_URLS=http://+:80"  -p 9000:80 --name rpn-calc rpn-calc
