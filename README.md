@@ -5,7 +5,7 @@
 Implement a Reverse Polish Notation (RPN) calculator using test-driven
 development (TDD) and set up a Azure DevOps CI/CD pipeline that deploys to Azure.
 
-The application can be accessed at <https://rpn-calc.azurewebsites.net/>.
+The application can be accessed at <https://rpn-calc.azurewebsites.net>.
 
 ## General Application Requirements
 
