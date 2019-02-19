@@ -14,7 +14,7 @@ export class Home extends Component {
                                 <p>Implement a Reverse Polish Notation (RPN) calculator using test-driven
 development (TDD) and set up a Azure DevOps CI/CD pipeline that deploys to Azure.</p>
 
-                                <p>The application can be accessed at <a href="https://rpn-calc.azurewebsites.net">https://rpn-calc.azurewebsites.net/</a>.</p>
+                                <p>The application can be accessed at <a href="https://rpn-calc.azurewebsites.net">https://rpn-calc.azurewebsites.net</a>.</p>
 
                                 <h2 id="generalapplicationrequirements">General Application Requirements</h2>
 
