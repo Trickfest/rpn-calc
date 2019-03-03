@@ -7,7 +7,7 @@ export class Home extends Component {
                 return (
                         <div>
                                 <h1 id="rpncalc">RPN-CALC</h1>
-                                <p><i>Version: 20190219.4</i></p>
+                                <p><i>Version: 20190303.1</i></p>
 
                                 <h2 id="introduction">Introduction</h2>
 
@@ -150,9 +150,9 @@ should be an option as well.</p>
                                         
                                         
 <ul>
-                                                        <li>.NET Core - 2.2.101</li>
+                                                        <li>.NET Core - 2.2.104</li>
 
-                                                        <li>Npm - 6.5.0 (installed via node 11.6.0 using Homebrew)</li></ul>
+                                                        <li>Npm - 6.7.0 (installed via node 11.10.1 using Homebrew)</li></ul>
                                         </li>
                                 </ul>
 
